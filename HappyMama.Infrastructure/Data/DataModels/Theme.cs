@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
@@ -16,8 +17,14 @@ namespace HappyMama.Infrastructure.Data.DataModels
         [Comment("ThemeTitle")]
         public string Title { get; set; } = string.Empty;
 
+        [Comment("CreatorIdentifier")]
+        public string CreatorId { get; set; } = string.Empty;
+
+        [Comment("Navigation property of the creator")]
+        public IdentityUser Creator { get; set; } = null!;
+
         [Required]
-        [Comment("Creting date of the theme for discussion")]
+        [Comment("Creating date of the theme for discussion")]
         public DateTime CreatedOn { get; set; }
 
         [Comment("All post for this theme")]

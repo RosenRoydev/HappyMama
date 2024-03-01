@@ -19,11 +19,13 @@ namespace HappyMama.Infrastructure.Data.DataModels
         public string Name { get; set; } = string.Empty;
 
         [Required]
+        [MaxLength(EventDescriptionMaxLength)]
         [Comment("Event Description")]
         public string Description { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(EventDescriptionMaxLength)]
+        
+        [Column(TypeName = "decimal(18,2)")]
         [Comment("Needed money for the event")]
         public decimal NeededAmount { get; set; }
 
@@ -33,7 +35,7 @@ namespace HappyMama.Infrastructure.Data.DataModels
 
         [Required]
         [ForeignKey(nameof(CreatorId))]
-        [Comment("Creator of the event identifier")]
+        [Comment("Creator identifier")]
         public string CreatorId { get; set; } = string.Empty;
 
         [Comment("Navigation property for the Creator")]

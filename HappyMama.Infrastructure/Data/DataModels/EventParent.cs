@@ -9,7 +9,7 @@ namespace HappyMama.Infrastructure.Data.DataModels
     public class EventParent
     {
         [Required]
-        [ForeignKey(nameof(EventId))]
+        [ForeignKey(nameof(Event))]
         [Comment("Event Identifier")]
         public int EventId { get; set; }
 
@@ -18,7 +18,7 @@ namespace HappyMama.Infrastructure.Data.DataModels
         public Event Event { get; set; } = null!;
 
         [Required]
-        [ForeignKey(nameof(ParentId))]
+        [ForeignKey(nameof(Parent))]
         [Comment("Parent identifier")]
         public string ParentId { get; set; } = string.Empty;
 

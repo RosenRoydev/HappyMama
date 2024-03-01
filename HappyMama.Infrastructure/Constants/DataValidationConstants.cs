@@ -31,5 +31,17 @@ namespace HappyMama.Infrastructure.Constants
         public const int PostContentMinLength = 2;
         public const int PostContentMaxLength = 2000;
 
+        public const int TeacherFirstNameMinLength = 3;
+        public const int TeacherFirstNameMaxLength = 30;
+
+        public const int TeacherLastNameMinLength = 3;
+        public const int TeacherLastNameMaxLength = 30;
+
+        public const int NicknameMinLength = 3;
+        public const int NicknameMaxLength = 30;
+
+        public const string DecimalPrecision = "18";
+        public const string DecimalScale = "2";
+
     }
 }

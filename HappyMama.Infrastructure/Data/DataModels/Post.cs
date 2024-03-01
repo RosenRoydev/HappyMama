@@ -22,13 +22,13 @@ namespace HappyMama.Infrastructure.Data.DataModels
         public DateTime CreatedOn { get; set; }
 
         [Required]
-        [ForeignKey(nameof(UserId))]
-        [Comment("User identifier")]
-        public string UserId { get; set; } = string.Empty;
+        [ForeignKey(nameof(CreatorId))]
+        [Comment("Creator identifier")]
+        public string CreatorId { get; set; } = string.Empty;
 
         [Required]
-        [Comment("Navigation property for the user")]
-        public IdentityUser User { get; set; } = null!;
+        [Comment("Navigation property for the Creator")]
+        public IdentityUser Creator { get; set; } = null!;
 
         [Required]
         [Comment("Post identifier")]
