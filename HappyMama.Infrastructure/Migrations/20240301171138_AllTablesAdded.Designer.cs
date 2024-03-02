@@ -4,6 +4,7 @@ using HappyMama.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyMama.Infrastructure.Migrations
 {
     [DbContext(typeof(HappyMamaDbContext))]
-    partial class HappyMamaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240301171138_AllTablesAdded")]
+    partial class AllTablesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,7 @@ namespace HappyMama.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Admins", (string)null);
+                    b.ToTable("Admins");
 
                     b.HasComment("Class for the admins");
                 });
@@ -94,7 +96,7 @@ namespace HappyMama.Infrastructure.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Events", (string)null);
+                    b.ToTable("Events");
 
                     b.HasComment("Events for collecting money");
                 });
@@ -113,7 +115,7 @@ namespace HappyMama.Infrastructure.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("EventsParents", (string)null);
+                    b.ToTable("EventsParents");
 
                     b.HasComment("Mapping table between parents and events because of payments");
                 });
@@ -162,7 +164,7 @@ namespace HappyMama.Infrastructure.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("News", (string)null);
+                    b.ToTable("News");
 
                     b.HasComment("News section");
                 });
@@ -189,7 +191,7 @@ namespace HappyMama.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Parents", (string)null);
+                    b.ToTable("Parents");
 
                     b.HasComment("Class for parents");
                 });
@@ -243,7 +245,7 @@ namespace HappyMama.Infrastructure.Migrations
 
                     b.HasIndex("ThemeId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
 
                     b.HasComment("Forum Section - Posts");
                 });
@@ -278,7 +280,7 @@ namespace HappyMama.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Teachers", (string)null);
+                    b.ToTable("Teachers");
 
                     b.HasComment("Class for teachers");
                 });
@@ -326,7 +328,7 @@ namespace HappyMama.Infrastructure.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Themes", (string)null);
+                    b.ToTable("Themes");
 
                     b.HasComment("Forum Section - Theme creating");
                 });

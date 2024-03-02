@@ -14,21 +14,12 @@ namespace HappyMama.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-                 builder.Entity<EventParent>()
-                 .Property<string>("ParentId");
+               
 
             builder.Entity<EventParent>()
-                .HasKey(ep => new { ep.EventId, ep.ParentId });
+                .HasKey(ep => new { ep.EventId,ep.ParentId});
 
-            builder.Entity<EventParent>()
-              .HasOne(ep => ep.Parent)
-              .WithMany()
-              .HasForeignKey(ep => ep.ParentId);
-
-            builder.Entity<EventParent>()
-             .HasOne(ep => ep.Event)
-             .WithMany(e => e.Parents) 
-             .HasForeignKey(ep => ep.EventId);
+            
 
             base.OnModelCreating(builder);
         }

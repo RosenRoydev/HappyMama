@@ -18,13 +18,13 @@ namespace HappyMama.Infrastructure.Data.DataModels
         public Event Event { get; set; } = null!;
 
         [Required]
-        [ForeignKey(nameof(Parent))]
+        [ForeignKey(nameof(User))]
         [Comment("Parent identifier")]
-        public string ParentId { get; set; } = string.Empty;
+        public int ParentId { get; set; }
 
         [Required]
         [Comment("Navigation property for Parent Id")]
-        public IdentityUser Parent { get; set; } = null!;
+        public Parent User { get; set; } = null!;
 
     }
 }
