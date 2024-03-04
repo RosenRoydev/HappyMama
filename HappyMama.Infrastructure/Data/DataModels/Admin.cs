@@ -29,6 +29,9 @@ namespace HappyMama.Infrastructure.Data.DataModels
         [Comment("All themes created from the admin")]
         public ICollection<Theme> Theme { get; set; } = new HashSet<Theme>();
 
+        [Comment("All Events created from the admin")]
+        public ICollection<Event> Events { get; set; } = new HashSet<Event>();
+
         [Comment("All post of the admin")]
         public ICollection<Post> Posts { get; set; } = new HashSet<Post>();
 

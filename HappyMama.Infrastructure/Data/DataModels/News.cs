@@ -27,7 +27,7 @@ namespace HappyMama.Infrastructure.Data.DataModels
         public DateTime CreatedOn { get; set; }
 
         [Required]
-        [ForeignKey(nameof(CreatorId))]
+        [ForeignKey(nameof(Creator))]
         [Comment("Creator Identifier")]
         public string CreatorId { get; set; } = string.Empty;
 

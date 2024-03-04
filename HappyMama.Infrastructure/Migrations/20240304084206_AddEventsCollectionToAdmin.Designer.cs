@@ -4,6 +4,7 @@ using HappyMama.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyMama.Infrastructure.Migrations
 {
     [DbContext(typeof(HappyMamaDbContext))]
-    partial class HappyMamaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240304084206_AddEventsCollectionToAdmin")]
+    partial class AddEventsCollectionToAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,18 +186,6 @@ namespace HappyMama.Infrastructure.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("Decimal(18,2)")
                         .HasComment("Amount from where the parent can pay for events");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasComment("First name of the parent");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasComment("Last name of the parent");
 
                     b.Property<string>("UserId")
                         .IsRequired()

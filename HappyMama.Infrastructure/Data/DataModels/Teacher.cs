@@ -14,12 +14,12 @@ namespace HappyMama.Infrastructure.Data.DataModels
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(TeacherFirstNameMaxLength)]
+        [MaxLength(FirstNameMaxLength)]
         [Comment("First name of the teacher")]
         public string FirstName {  get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(TeacherLastNameMaxLength)]
+        [MaxLength(LastNameMaxLength)]
         [Comment("Last name of the teacher")]
         public string LastName { get; set; } = string.Empty;
 
