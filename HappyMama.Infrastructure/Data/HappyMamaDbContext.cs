@@ -1,4 +1,5 @@
 ﻿using HappyMama.Infrastructure.Data.DataModels;
+using HappyMama.Infrastructure.Data.SeedDb;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
@@ -14,12 +15,18 @@ namespace HappyMama.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-               
-
             builder.Entity<EventParent>()
-                .HasKey(ep => new { ep.EventId,ep.ParentId});
+               .HasKey(ep => new { ep.EventId, ep.ParentId });
 
-            
+            builder.ApplyConfiguration(new AdminConfiguration());
+            builder.ApplyConfiguration(new ParentConfiguration());
+            builder.ApplyConfiguration(new TeacherConfiguration());
+            builder.ApplyConfiguration(new EventConfiguration());
+            builder.ApplyConfiguration(new NewsConfiguration());
+            builder.ApplyConfiguration(new ThemeConfiguration());
+            builder.ApplyConfiguration(new PostConfiguration());       
+
+
 
             base.OnModelCreating(builder);
         }
