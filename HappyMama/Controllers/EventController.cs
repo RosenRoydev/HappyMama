@@ -1,9 +1,11 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
 using HappyMama.BusinessLogic.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HappyMama.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
         private readonly IEventService eventService;

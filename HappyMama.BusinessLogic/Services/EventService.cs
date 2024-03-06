@@ -1,5 +1,5 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
-using HappyMama.BusinessLogic.ViewModels;
+using HappyMama.BusinessLogic.ViewModels.Event;
 using HappyMama.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;

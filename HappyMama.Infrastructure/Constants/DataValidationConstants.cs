@@ -11,8 +11,8 @@ namespace HappyMama.Infrastructure.Constants
         public const int EventNameMinLength = 3;
         public const int EventNameMaxLength = 50;
 
-        public const double EventSumMin = 50;
-        public const double EventSumMax = 500;
+        public const string EventSumMin = "50";
+        public const string EventSumMax = "500";
 
         public const int EventDescriptionMinLength = 3;
         public const int EventDescriptionMaxLength = 500;

@@ -1,4 +1,4 @@
-﻿using HappyMama.BusinessLogic.ViewModels;
+﻿using HappyMama.BusinessLogic.ViewModels.Event;
 
 namespace HappyMama.BusinessLogic.Contracts
 {
