@@ -1,4 +1,6 @@
-﻿using HappyMama.Infrastructure.Data;
+﻿using HappyMama.BusinessLogic.Contracts;
+using HappyMama.Infrastructure.Data;
+using HappyMama.BusinessLogic.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +10,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
+            services.AddScoped<IEventService, EventService>();
+
             return services;
         }
 

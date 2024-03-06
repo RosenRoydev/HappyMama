@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EventIndexViewModel>
+
+@{
+    ViewBag.Title = " Events ";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var e in Model)
+    {
+        <div class="card col-4" style="width: 20rem; ">
+            <div class="card-body">
+                <h5 class="card-title mt-1">@e.Name</h5>
+                <p class="mb-0"><span class="fw-bold">Description : </span>@e.Description</p>
+                <p class="mb-0"><span class="fw-bold">Needed Amount: </span>@e.DeadTime</p>
+                <p class="mb-0"><span class="fw-bold">Deadline time: </span>@e.DeadTime</p>
+                <p class="mb-0"><span class="fw-bold">Creator of Event: </span>@e.Creator</p>
+            </div>
+
+            <a asp-controller="Event" asp-action="Details" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">View Details</a>
+            @if (User.Identity.Name == e.Creator)
+            {
+                <a asp-controller="Event" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+            }
+            else
+            {
+                <form class="input-group-sm " asp-controller="Event" asp-action="Join" asp-route-id="@e.Id">
+                    <input type="submit" value="Join the Event" class="fs-6 btn btn-warning mb-3 w-100 p-3 fw-bold" />
+                </form>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
