@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
         options.ModelBinderProviders.Insert(0,new DateTimeCustomBinderProvider());
+        options.ModelBinderProviders.Insert(1, new DecimalCustomBinderProvider());
     });
 
 builder.Services.AddApplicationService();
