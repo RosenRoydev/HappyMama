@@ -40,6 +40,7 @@ public class AddEventFormModel
     //To do  custom model binder for date format
     public string DeadTime { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = RequiredField)]
     public string Creator { get; set; } = null!;
 
    // public ICollection<EventParent> Parents { get; set; } = new List<EventParent>();

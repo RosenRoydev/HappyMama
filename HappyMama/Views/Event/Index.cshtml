@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EventIndexViewModel>
+﻿@using HappyMama.BusinessLogic.ViewModels.Event
+@model IEnumerable<EventIndexViewModel>
 
 @{
     ViewBag.Title = " Events ";
@@ -23,8 +24,8 @@
             
             @if (User.Identity.Name == e.Creator)
             {
-                <a asp-controller="Event" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
-                <a asp-controller="Event" asp-action="Add event" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Add new Event</a>
+                <a asp-controller="Event" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Edit</a>
+                <a asp-controller="Event" asp-action="Add event" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Add new Event</a>
             }
             else
             {
