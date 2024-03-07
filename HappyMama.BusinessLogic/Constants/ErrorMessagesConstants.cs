@@ -10,7 +10,7 @@ namespace HappyMama.BusinessLogic.Constants
 
         public const string NeededAmountRestrict = "The field {0} must be between {1} and {2} BGN";
 
-        public const string NotCorrectDateFormat = "The field {0} must be in format dd/MM/yyyy";
+        public const string NotCorrectDateFormat = "The field {0} must be in format dd/MM/yyyy hh:ss";
 
         public const string InvalidValueType = "Invalid value type";
     }
