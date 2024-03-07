@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
 
-namespace HappyMama.BusinessLogic.ViewModels
+namespace HappyMama.BusinessLogic.CustomAttributes
 {
     public class DateFormatAttribute : ValidationAttribute
     {
@@ -14,14 +14,14 @@ namespace HappyMama.BusinessLogic.ViewModels
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if(value is DateTime dateTime)
+            if (value is DateTime dateTime)
             {
                 if (DateTime.TryParseExact(dateTime.ToString(),
-                    dateFormat,null,
+                    dateFormat, null,
                     System.Globalization.DateTimeStyles.None,
                     out _))
                 {
-                   return ValidationResult.Success;
+                    return ValidationResult.Success;
                 }
 
                 else

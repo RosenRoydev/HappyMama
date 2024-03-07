@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
+using HappyMama.BusinessLogic.CustomAttributes;
 
 namespace HappyMama.BusinessLogic.ViewModels.Event;
 
