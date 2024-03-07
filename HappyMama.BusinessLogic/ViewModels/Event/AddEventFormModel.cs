@@ -38,6 +38,7 @@ public class AddEventFormModel
     [Required(ErrorMessage = RequiredField)]
 
     //To do  custom model binder for date format
+    
     public string DeadTime { get; set; } = string.Empty;
 
     [Required(ErrorMessage = RequiredField)]
