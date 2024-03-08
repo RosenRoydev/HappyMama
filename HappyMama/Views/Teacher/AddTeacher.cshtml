@@ -1,0 +1,25 @@
+﻿@using HappyMama.BusinessLogic.ViewModels.Teacher
+@model AddTeacherForm
+
+@{
+	ViewBag.Title = "Register for teachers";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form method="post">
+<div class="form-floating mb-3">
+	<input type="firstName" class="form-control" id="floatingInput" placeholder="First Name">
+	<label for="floatingInput">First Name</label>
+</div>
+<div class="form-floating">
+	<input type="lastName" class="form-control" id="floatingPassword" placeholder="Last Name">
+	<label for="floatingPassword">Last Name</label>
+</div>
+<div class="text-center"> <input class="btn btn-primary mt-3 " type="submit" value="Save" /> </div>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

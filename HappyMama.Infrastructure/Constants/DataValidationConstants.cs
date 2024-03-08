@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HappyMama.Infrastructure.Constants
+﻿namespace HappyMama.Infrastructure.Constants
 {
     public static class DataValidationConstants
     {
