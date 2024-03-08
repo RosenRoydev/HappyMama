@@ -13,5 +13,7 @@ namespace HappyMama.BusinessLogic.Constants
         public const string NotCorrectDateFormat = "The field {0} must be in format dd/MM/yyyy hh:ss";
 
         public const string InvalidValueType = "Invalid value type";
+
+        public const string TeacherExist = "Teacher with this names is already added in HappyMama";
     }
 }
