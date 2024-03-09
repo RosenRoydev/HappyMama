@@ -22,7 +22,7 @@ namespace HappyMama.BusinessLogic.Services
                 LastName = LastName
 
             };
-
+             context.Teachers.Add(teacher);
             await context.SaveChangesAsync();
         }
 

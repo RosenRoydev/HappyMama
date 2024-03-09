@@ -11,7 +11,8 @@ namespace HappyMama.Infrastructure.Data
         public HappyMamaDbContext(DbContextOptions<HappyMamaDbContext> options)
             : base(options)
         {
-        }
+			
+		}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

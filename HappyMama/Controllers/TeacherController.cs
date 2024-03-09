@@ -32,14 +32,16 @@ namespace HappyMama.Controllers
             {
                 return BadRequest();
             }
-             
-            if( service.ExistTeacherByFirstNameAsync(model.FirstName) != null &&
-                 service.ExistTeacherByLastNameAsync(model.LastName) != null)
-            {
-                ModelState.AddModelError("Error", TeacherExist);
-            }
 
-            if(!ModelState.IsValid)
+			if (await service.ExistTeacherByFirstNameAsync(model.FirstName) && 
+                await service.ExistTeacherByLastNameAsync(model.LastName))
+			{
+				ModelState.AddModelError("Error", TeacherExist);
+			}
+
+		
+
+			if (!ModelState.IsValid)
             {
                 return View(model);
             }

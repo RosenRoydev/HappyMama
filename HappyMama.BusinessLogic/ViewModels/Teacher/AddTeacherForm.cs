@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static HappyMama.Infrastructure.Constants.DataValidationConstants;
+﻿using System.ComponentModel.DataAnnotations;
 using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
+using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
 namespace HappyMama.BusinessLogic.ViewModels.Teacher
 {
-    public class AddTeacherForm
+	public class AddTeacherForm
     {
         [Required(ErrorMessage = RequiredField )]
         [StringLength(FirstNameMaxLength,
