@@ -1,11 +1,7 @@
-﻿using HappyMama.Infrastructure.Data.DataModels;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using HappyMama.BusinessLogic.CustomAttributes;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
-using HappyMama.BusinessLogic.CustomAttributes;
+using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
 namespace HappyMama.BusinessLogic.ViewModels.Event;
 
@@ -36,11 +32,10 @@ public class AddEventFormModel
         ErrorMessage = NeededAmountRestrict)]    
     public decimal NeededAmount { get; set; }
 
-    [Required(ErrorMessage = RequiredField)]
-
-    //To do  custom model binder for date format
+    [Required(ErrorMessage = RequiredField)] 
     [DateFormat(FormatForDate)]
-    public string DeadTime { get; set; } = string.Empty;
+    [Display(Name = "Deadline time")]
+    public DateTime DeadlineTime { get; set; }
 
     [Required(ErrorMessage = RequiredField)]
     public string Creator { get; set; } = null!;

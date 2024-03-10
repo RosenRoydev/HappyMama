@@ -13,6 +13,23 @@ namespace HappyMama.BusinessLogic.Services
         {
             context = _context;
         }
+
+        public async Task<AddEventFormModel> AddEventAsync(AddEventFormModel model)
+        {
+            var entity = new AddEventFormModel()
+            {
+                Name = model.Name,
+                Description = model.Description,
+                NeededAmount = model.NeededAmount,
+                DeadlineTime = model.DeadlineTime,
+                Creator = model.Creator,
+                
+            };
+            
+            context.SaveChangesAsync();
+            return await Task.FromResult(entity);//?????????
+        }
+
         public async Task<IEnumerable<EventIndexViewModel>> AllEventsAsync()
         {
             return await context.Events
