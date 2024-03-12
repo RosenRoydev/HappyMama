@@ -1,0 +1,33 @@
+﻿@using HappyMama.BusinessLogic.ViewModels.Parent
+@model AddParentFormModel
+
+@{
+	ViewBag.Title = "Register for Parents";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form method="post">
+	<div class="form-floating mb-3">
+		<input asp-for="FirstName" class="form-control" id="FirstName" placeholder="First Name">
+		<span asp-validation-for="FirstName" class="small text-danger"></span>
+		<label for="FirstName">First Name</label>
+	</div>
+	<div class ="form-floating mb-3">
+		<input asp-for="LastName" class="form-control" id="LastName" placeholder="Last Name">
+		<span asp-validation-for="LastName" class="small text-danger"></span>
+		<label for="LastName">Last Name</label>
+	</div >
+	<div class="form-floating mb-3">
+		<input asp-for="Amount" class="form-control" id="Amount" placeholder="Amount" type="number" required name="amount" min="30" max="180" value="0" step="any">
+		<span asp-validation-for="Amount" class="small text-danger"></span>
+		<label for="Amount">Amount</label>
+	</div>
+
+	<div class="text-center"> <input class="btn btn-primary mt-3 "  type="submit" value="Save" /> </div>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

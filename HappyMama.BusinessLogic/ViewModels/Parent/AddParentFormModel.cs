@@ -19,10 +19,9 @@ namespace HappyMama.BusinessLogic.ViewModels.Parent
 		public string LastName { get; set; } = String.Empty;
 
         [Required(ErrorMessage = RequiredField)]
-        [Range(typeof(decimal),
-            AmountMinValue,
+        [Range(AmountMinValue, 
             AmountMaxValue,
             ErrorMessage = NeededAmountRestrict)]
-        public decimal Amount {  get; set; }
+        public string Amount { get; set; } = string.Empty;
     }
 }

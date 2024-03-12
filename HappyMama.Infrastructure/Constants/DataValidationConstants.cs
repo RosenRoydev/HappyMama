@@ -8,8 +8,8 @@
         public const string EventSumMin = "50";
         public const string EventSumMax = "500";
 
-        public const string AmountMinValue = "30";
-        public const string AmountMaxValue = "300";
+        public const double  AmountMinValue = 30;
+        public const double  AmountMaxValue = 300;
 
         public const int EventDescriptionMinLength = 3;
         public const int EventDescriptionMaxLength = 500;

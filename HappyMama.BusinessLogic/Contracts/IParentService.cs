@@ -5,8 +5,10 @@ namespace HappyMama.BusinessLogic.Contracts
 {
     public interface IParentService
 	{
-		Task <bool> FirstNameExist (string FirstName);
-		Task<bool> LastNameExists(string LastName);
-		Task<AddParentFormModel> AddParent(AddParentFormModel model);
+		Task <bool> FirstNameExistAsync (string FirstName);
+		Task<bool> LastNameExistsAsync(string LastName);
+
+		Task<bool> ExistByIdAsync (string Id);
+		Task AddParentAsync(string Id, AddParentFormModel model);
 	}
 }

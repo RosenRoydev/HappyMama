@@ -10,10 +10,14 @@ namespace HappyMama.BusinessLogic.Constants
 
         public const string NeededAmountRestrict = "The field {0} must be between {1} and {2} BGN";
 
+        public const string InvalidAmountFormat = "The format of Amount exist only digits and . between them";
+
         public const string NotCorrectDateFormat = "The field {0} must be in format dd/MM/yyyy hh:ss";
 
         public const string InvalidValueType = "Invalid value type";
 
         public const string TeacherExist = "Teacher with this names is already added in HappyMama";
-    }
+
+        public const string ParentExist = "Parent with this names is already added in HappyMama";
+	}
 }
