@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 
+
 namespace HappyMama.Extensions
 {
     public static class ClaimsPrincipalExtensions

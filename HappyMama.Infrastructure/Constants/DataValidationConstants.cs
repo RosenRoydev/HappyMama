@@ -5,8 +5,8 @@
         public const int EventNameMinLength = 3;
         public const int EventNameMaxLength = 50;
 
-        public const string EventSumMin = "50";
-        public const string EventSumMax = "500";
+        public const double EventSumMin = 50;
+        public const double EventSumMax = 500;
 
         public const double  AmountMinValue = 30;
         public const double  AmountMaxValue = 300;
@@ -20,7 +20,7 @@
         public const int NewsDescriptionMinLength = 10;
         public const int NewsDescriptionMaxLength = 2000;
 
-        public const string FormatForDate = "dd/MM/yyyy hh:ss";
+        public const string FormatForDate = "dd/MM/yyyy hh:mm";
 
         public const int ThemeTitleMinLength = 3;
         public const int ThemeTitleMaxLength = 100;

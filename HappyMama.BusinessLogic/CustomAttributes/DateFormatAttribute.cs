@@ -1,36 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
 
 namespace HappyMama.BusinessLogic.CustomAttributes
 {
     public class DateFormatAttribute : ValidationAttribute
     {
-        private readonly string dateFormat;
+        
 
-        public DateFormatAttribute(string _dateFormat)
+        public override bool IsValid(object value)
         {
-            dateFormat = _dateFormat;
-        }
+			
+			DateTime dateTime;
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            if (value is DateTime dateTime)
-            {
-                if (DateTime.TryParseExact(dateTime.ToString(),
-                    dateFormat, null,
-                    System.Globalization.DateTimeStyles.None,
-                    out _))
-                {
-                    return ValidationResult.Success;
-                }
+			var isValid = DateTime.TryParseExact(Convert.ToString(value),
+				"dd.MM.yyyy HH:mm:ss",
+				CultureInfo.CurrentCulture,
+				DateTimeStyles.None,
+				out dateTime);
 
-                else
-                {
-                    return new ValidationResult(NotCorrectDateFormat);
-                }
-            }
+			return isValid;
 
-            return new ValidationResult(InvalidValueType);
-        }
+
+		}
     }
 }

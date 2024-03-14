@@ -1,0 +1,38 @@
+﻿@using HappyMama.BusinessLogic.ViewModels.Event
+@model AddEventFormModel
+
+@{
+	ViewBag.Title = "Add event";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form method="post">
+	<div class="form-floating mb-3">
+		<input asp-for="Name" class="form-control" id="Name" placeholder="Event Name">
+		<span asp-validation-for="Name" class="small text-danger"></span>
+		<label for="Name">Name</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input asp-for="Description" class="form-control" id="Description" placeholder="Event Description">
+		<span asp-validation-for="Description" class="small text-danger"></span>
+		<label for="Description">Description</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input asp-for="NeededAmount" class="form-control" id="Needed Amount" placeholder="Event Amount" >
+		<span asp-validation-for="NeededAmount" class="small text-danger"></span>
+		<label for="Amount">Amount</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input asp-for="DeadlineTime" class="form-control" aria-required="true" placeholder="Last date for payment" />
+		<label for="DeadlineTime">Last day for payment</label>
+		<span asp-validation-for="DeadlineTime" class="text-danger"></span>
+	</div>
+
+	<div class="text-center"> <input class="btn btn-warning mt-3 " type="submit" value="Register" /> </div>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

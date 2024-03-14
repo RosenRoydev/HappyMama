@@ -41,17 +41,7 @@ namespace HappyMama.Controllers
 				ModelState.AddModelError("Error", ParentExist);
 			}
 
-			if (!decimal.TryParse(model.Amount, out decimal amountValue))
-			{
-				ModelState.AddModelError("Amount", InvalidAmountFormat);
-				return View(model);
-			}
-
-			if (amountValue < 30 || amountValue > 180)
-			{
-				ModelState.AddModelError("Amount", NeededAmountRestrict);
-				return View(model);
-			}
+			
 
 			if (!ModelState.IsValid)
 			{

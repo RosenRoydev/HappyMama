@@ -23,7 +23,7 @@ namespace HappyMama.BusinessLogic.Services
 				UserId = Id,
 				FirstName = model.FirstName,
 				LastName = model.LastName,
-				Amount = decimal.Parse(model.Amount),
+				Amount = model.Amount,
 			};
 			
 

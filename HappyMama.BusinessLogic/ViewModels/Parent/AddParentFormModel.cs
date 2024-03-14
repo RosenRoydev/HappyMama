@@ -22,6 +22,6 @@ namespace HappyMama.BusinessLogic.ViewModels.Parent
         [Range(AmountMinValue, 
             AmountMaxValue,
             ErrorMessage = NeededAmountRestrict)]
-        public string Amount { get; set; } = string.Empty;
+        public decimal Amount { get; set; }
     }
 }

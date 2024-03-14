@@ -1,4 +1,5 @@
 ﻿using HappyMama.BusinessLogic.CustomAttributes;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;
@@ -26,19 +27,17 @@ public class AddEventFormModel
     public string Description { get; set; } = string.Empty;
 
     [Required(ErrorMessage = RequiredField)]
-    [Range(typeof(decimal), EventSumMin
-        ,EventSumMax,
-        ConvertValueInInvariantCulture = true,
-        ErrorMessage = NeededAmountRestrict)]    
-    public decimal NeededAmount { get; set; }
-
-    [Required(ErrorMessage = RequiredField)] 
-    [DateFormat(FormatForDate)]
-    [Display(Name = "Deadline time")]
-    public DateTime DeadlineTime { get; set; }
+    [Range(EventSumMin,
+        EventSumMax,
+        ErrorMessage = NeededAmountRestrict)]
+    public decimal NeededAmount { get; set; } 
 
     [Required(ErrorMessage = RequiredField)]
-    public string Creator { get; set; } = null!;
+    
+    [Display(Name = "Last date for payment")]
+    public DateTime DeadlineTime { get; set; } 
+
+    
 
    // public ICollection<EventParent> Parents { get; set; } = new List<EventParent>();
 }

@@ -1,4 +1,6 @@
 ﻿using HappyMama.BusinessLogic.ViewModels.Event;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace HappyMama.BusinessLogic.Contracts
 {
@@ -6,6 +8,10 @@ namespace HappyMama.BusinessLogic.Contracts
     {
         Task<IEnumerable<EventIndexViewModel>> AllEventsAsync();
        
-        Task <AddEventFormModel> AddEventAsync(AddEventFormModel model);
+        Task  AddEventAsync(AddEventFormModel model, string Id);
+        Task<bool> ExistEventByIdAsync(int id);
+
+       
+        
     }
 }

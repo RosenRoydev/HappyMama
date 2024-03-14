@@ -21,8 +21,9 @@ namespace HappyMama.CustomModelBinders
                     strValue = strValue.Replace(".",CultureInfo.CurrentCulture.DateTimeFormat.DateSeparator);
                     strValue = strValue.Replace("/", CultureInfo.CurrentCulture.DateTimeFormat.DateSeparator);
                     strValue = strValue.Replace(",", CultureInfo.CurrentCulture.DateTimeFormat.DateSeparator);
+					
 
-                    time = Convert.ToDateTime(strValue,CultureInfo.CurrentCulture);
+					time = Convert.ToDateTime(strValue,CultureInfo.CurrentCulture);
                     success = true;
                 }
 
