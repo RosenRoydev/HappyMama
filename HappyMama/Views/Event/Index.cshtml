@@ -25,7 +25,7 @@
             @if (User.Identity.Name == e.Creator)
             {
                 <a asp-controller="Event" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Edit</a>
-                <a asp-controller="Event" asp-action="AddEvent" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Add new Event</a>
+                <a asp-controller="Event" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
             }
             else
             {

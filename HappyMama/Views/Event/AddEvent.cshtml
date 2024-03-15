@@ -25,7 +25,7 @@
 		<label for="Amount">Amount</label>
 	</div>
 	<div class="form-floating mb-3">
-		<input asp-for="DeadlineTime" class="form-control" aria-required="true" placeholder="Last date for payment" />
+		<input asp-for="DeadlineTime" class="form-control" aria-required="true" placeholder="Last date for payment" min="@DateTime.UtcNow" />
 		<label for="DeadlineTime">Last day for payment</label>
 		<span asp-validation-for="DeadlineTime" class="text-danger"></span>
 	</div>

@@ -32,8 +32,7 @@ public class AddEventFormModel
         ErrorMessage = NeededAmountRestrict)]
     public decimal NeededAmount { get; set; } 
 
-    [Required(ErrorMessage = RequiredField)]
-    
+    [Required(ErrorMessage = RequiredField)]   
     [Display(Name = "Last date for payment")]
     public DateTime DeadlineTime { get; set; } 
 
