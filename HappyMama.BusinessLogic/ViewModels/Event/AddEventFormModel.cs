@@ -8,14 +8,13 @@ namespace HappyMama.BusinessLogic.ViewModels.Event;
 
 public class AddEventFormModel
 {
-    [Key]
-    
-    public int Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-    [Required(ErrorMessage = RequiredField)]
-    [StringLength(EventNameMaxLength
-        ,MinimumLength = EventNameMinLength
-        ,ErrorMessage = RequiredLength)]
+        [Required(ErrorMessage = RequiredField)]
+        [StringLength(EventNameMaxLength
+            ,MinimumLength = EventNameMinLength
+            ,ErrorMessage = RequiredLength)]
 
     public string Name { get; set; } = string.Empty;
 
@@ -34,7 +33,9 @@ public class AddEventFormModel
 
     [Required(ErrorMessage = RequiredField)]   
     [Display(Name = "Last date for payment")]
-    public DateTime DeadlineTime { get; set; } 
+    public DateTime DeadlineTime { get; set; }
+
+    
 
     
 

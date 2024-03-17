@@ -54,5 +54,38 @@ namespace HappyMama.Controllers
 
             return RedirectToAction(nameof(Index),"Home");
         }
+
+        [HttpGet]
+        public async Task <IActionResult> EditEvent(int Id)
+        {
+            if (await eventService.ExistEventByIdAsync(Id) == false)
+            {
+                return BadRequest();
+            }
+
+            var model = await eventService.GetEventModelById(Id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditEvent(int Id,AddEventFormModel model)
+        {
+			if (await eventService.ExistEventByIdAsync(model.Id) == false)
+			{
+				return BadRequest();
+			}
+
+           
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            
+           await eventService.EditEventAsync(model.Id, model);
+
+            return RedirectToAction(nameof(Index));
+		}
     }
 }

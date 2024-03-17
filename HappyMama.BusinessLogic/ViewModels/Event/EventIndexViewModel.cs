@@ -6,14 +6,14 @@ namespace HappyMama.BusinessLogic.ViewModels.Event
     {
 
 
-
+        
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string NeededAmount { get; set; } = string.Empty;
 
-        [Display(Name = "Time Deadline")]
-        public string DeadTime { get; set; } = string.Empty;
+        [Display(Name = "Last day for payment")]
+        public string DeadLineTime { get; set; } = string.Empty;
         public string CreatorId { get; set; } = string.Empty;
         public string Creator { get; set; } = string.Empty;
 

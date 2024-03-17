@@ -34,10 +34,7 @@ namespace HappyMama.BusinessLogic.Services
         {
             
             var currentUser = accessor.HttpContext.User;
-          
-
-           
-
+                
             var entity = new Event()
             {
                 Name = model.Name,
@@ -56,13 +53,16 @@ namespace HappyMama.BusinessLogic.Services
 		
 		public async Task<IEnumerable<EventIndexViewModel>> AllEventsAsync()
         {
-            return await context.Events
+            return await context.Events.
+                Include(e => e.Creator)
                 .Select(e => new EventIndexViewModel()
                 {
+                    Id = e.Id,
                     Name = e.Name,
                     Description = e.Description,
-                    DeadTime = e.DeadTime.ToString(FormatForDate),
+                    DeadLineTime = e.DeadTime.ToString(FormatForDate),
                     NeededAmount = e.NeededAmount.ToString(),
+                    CreatorId = e.CreatorId,
                     Creator = e.Creator.UserName,
 
                     
@@ -70,11 +70,52 @@ namespace HappyMama.BusinessLogic.Services
                   .ToListAsync();
         }
 
-        
-       
-        public  Task<bool> ExistEventByIdAsync(int id)
+		public Task<bool> CorrectEditor(string Id)
 		{
-			return context.Events.AnyAsync(e => e.Id == id);
+		  return context.Events.AnyAsync(e => e.CreatorId == Id);
+		}
+
+		
+
+		public async Task EditEventAsync(int id, AddEventFormModel model)
+		{
+            var entity = await context.Events
+                .Where(entity => entity.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (entity != null)
+            {
+                entity.Id= model.Id;
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                entity.DeadTime = model.DeadlineTime;
+                entity.NeededAmount = model.NeededAmount;
+                    
+                context.SaveChanges();
+            }
+			
+		}
+
+		public async  Task<bool> ExistEventByIdAsync(int id)
+		{
+			return await context.Events.AnyAsync(e => e.Id == id);
+		}
+
+		public async Task<AddEventFormModel?> GetEventModelById(int Id)
+		{
+			var model = await context.Events.Where(e => e.Id == Id)
+                .Select(e => new AddEventFormModel
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Description = e.Description,
+                    DeadlineTime = e.DeadTime,
+                    NeededAmount = e.NeededAmount,
+                    
+                })
+                .FirstOrDefaultAsync();
+
+            return model;
 		}
 
 		private string GetUserId(ClaimsPrincipal user)
