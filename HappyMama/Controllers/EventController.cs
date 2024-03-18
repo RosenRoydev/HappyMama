@@ -1,4 +1,5 @@
-﻿using HappyMama.BusinessLogic.Contracts;
+﻿using HappyMama.Attributes;
+using HappyMama.BusinessLogic.Contracts;
 using HappyMama.BusinessLogic.ViewModels.Event;
 using HappyMama.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -25,6 +26,7 @@ namespace HappyMama.Controllers
         }
 
         [HttpGet]
+        [AdminFilter]
         public   IActionResult AddEvent()
         {
             var model = new AddEventFormModel();
@@ -33,6 +35,7 @@ namespace HappyMama.Controllers
         }
 
         [HttpPost]
+        [AdminFilter]
 
         public async Task<IActionResult> AddEvent(AddEventFormModel model)
         {
