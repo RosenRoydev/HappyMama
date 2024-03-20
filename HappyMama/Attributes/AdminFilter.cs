@@ -2,8 +2,6 @@
 using HappyMama.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Drawing.Text;
-using System.Security.Claims;
 
 namespace HappyMama.Attributes
 {
