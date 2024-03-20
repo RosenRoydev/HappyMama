@@ -1,11 +1,10 @@
 ﻿using HappyMama.Attributes;
 using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.Enums;
 using HappyMama.BusinessLogic.ViewModels.Event;
 using HappyMama.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
-using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
 namespace HappyMama.Controllers
 {
@@ -18,9 +17,12 @@ namespace HappyMama.Controllers
         {
             eventService = _eventService;
         }
-        public async Task<IActionResult> Index()
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var model = await eventService.AllEventsAsync();
+            var model = await eventService.AllEventsAsync(page, EventIndexViewModel.EventsPerPage);
 
             return View(model);
         }
@@ -34,12 +36,21 @@ namespace HappyMama.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AllEventsSorted(string searchTerm , EventEnum sorting, int page = 1, int eventsPerPage = 1)
+        {
+            var model = await eventService
+                .AllEventsSortedAsync(searchTerm, sorting, page, eventsPerPage);
+
+         return View(model);
+        }
+
         [HttpPost]
         [AdminFilter]
 
         public async Task<IActionResult> AddEvent(AddEventFormModel model)
         {
-			// to do: validation for user who has rights to add event only teachers and admin can do it.
+			
 			if (model == null)
 			{
 				return BadRequest();
@@ -57,6 +68,8 @@ namespace HappyMama.Controllers
 
             return RedirectToAction(nameof(Index),"Home");
         }
+
+        
 
         [HttpGet]
         public async Task <IActionResult> EditEvent(int Id)

@@ -1,11 +1,11 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.Enums;
 using HappyMama.BusinessLogic.ViewModels.Event;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using System.Globalization;
 using System.Security.Claims;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
@@ -51,11 +51,19 @@ namespace HappyMama.BusinessLogic.Services
         }
 
 		
-		public async Task<IEnumerable<EventIndexViewModel>> AllEventsAsync()
+		public async Task<AllEventsViewModel> AllEventsAsync(int currentPage = 1, int eventsPerPage = 1)
         {
-            return await context.Events.
-                Include(e => e.Creator)
-                .Select(e => new EventIndexViewModel()
+            var eventsQuery = context.Events.Include(e => e.Creator);
+
+            
+            var totalCount = await eventsQuery.CountAsync();
+
+            
+            var events = await eventsQuery
+                .OrderBy(e => e.Id) 
+                .Skip((currentPage - 1) * eventsPerPage)
+                .Take(eventsPerPage)
+                .Select(e => new EventIndexViewModel
                 {
                     Id = e.Id,
                     Name = e.Name,
@@ -64,10 +72,74 @@ namespace HappyMama.BusinessLogic.Services
                     NeededAmount = e.NeededAmount.ToString(),
                     CreatorId = e.CreatorId,
                     Creator = e.Creator.UserName,
+                })
+                .ToListAsync();
 
-                    
-                }).AsNoTracking()
-                  .ToListAsync();
+            var totalPages = (int)Math.Ceiling(totalCount / (double)eventsPerPage);
+
+            return new AllEventsViewModel
+            {
+                EventsCount = totalCount,
+                Events = events,
+                CurrentPage = currentPage,
+                TotalPages = totalPages
+
+            };
+        }
+
+		public async Task<AllEventsViewModel> AllEventsSortedAsync(string searchingWord = null, EventEnum eventsSort = EventEnum.DateLine, int currentPage = 1, int eventsPerPage = 3)
+		{
+            var events = context.Events.AsQueryable();
+
+            
+
+            if(!string.IsNullOrEmpty(searchingWord)) 
+            {
+                string normalizedWord = searchingWord.ToLower();
+
+                events = events.Where(e => e.Name.Contains(normalizedWord.ToLower()) ||
+                          e.Creator.UserName.Contains(searchingWord.ToLower()) ||
+                          e.Description.Contains(searchingWord.ToLower()));
+            
+            }
+
+            events = eventsSort switch
+            {
+                EventEnum.DateLine => events.OrderBy(e => e.DeadTime),
+                EventEnum.AmountForEvent => events.OrderBy(e => e.NeededAmount),
+                EventEnum.DateAdded => events.OrderByDescending(e => e.Id)
+            };
+
+            var totalEvents = await events.CountAsync();
+
+            var filteredEvents = await events.
+                 Skip(currentPage - 1 * eventsPerPage)
+                 .Take(eventsPerPage)
+                 .Select(e => new EventIndexViewModel
+                 {
+                     Id = e.Id,
+                     Name = e.Name,
+                     Description = e.Description,
+                     DeadLineTime = e.DeadTime.ToString(FormatForDate),
+                     NeededAmount = e.NeededAmount.ToString(),
+                     CreatorId = e.CreatorId,
+                     Creator = e.Creator.UserName,
+
+                 }).ToListAsync();
+
+
+              var allEvents = filteredEvents.Count();
+
+            var totalPages = (int)Math.Ceiling(totalEvents / (double)eventsPerPage);
+
+            return  new AllEventsViewModel()
+            {
+                Events = filteredEvents,
+                EventsCount = allEvents,
+                CurrentPage = currentPage,
+                TotalPages = totalPages
+            };
+
         }
 
 		public Task<bool> CorrectEditor(string Id)
