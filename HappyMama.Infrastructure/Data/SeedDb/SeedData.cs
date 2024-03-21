@@ -33,7 +33,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
             Parent parent = new Parent()
             {
                 Id = 1,
-                UserId = "d2a09f19-256f-47ce-b661-04fe9fb105d6",
+                UserId = "228dfc0a-78a8-4163-aff3-94a5c1014fbb",
                 FirstName = "Ani",
                 LastName = "Ivanova",
                 Amount = 180
@@ -44,7 +44,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
             Parent anotherParent = new Parent()
             {
                 Id = 2,
-                UserId = "de119094-95c7-4b8f-a4be-e46203394b69",
+                UserId = "03d74db7-55ee-4ee0-ae1d-7c16a4578141",
                 FirstName = "Petia",
                 LastName = "Dubarova",
                 Amount = 180
@@ -59,7 +59,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
             Teacher teacher = new Teacher()
             {
                 Id = 1,
-                UserId = "8b6afc3a-0922-497a-b97d-faf99cb5b2ff",
+                UserId = "a05289cd-5411-45bb-b863-ba2394c21342",
                 FirstName = "Snezhana",
                 LastName = "Ilieva",
                 
@@ -73,7 +73,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
             Admin admin = new Admin()
             {
                 Id = 1,
-                UserId = "90402621-705a-4592-9195-70a26d1188cc",
+                UserId = "579cfd9f-0dfd-4775-b05d-e2ca79d70b92",
                 Nickname = "petrova",
 
             };
@@ -146,6 +146,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
                 DeadTime = DateTime.UtcNow,
                 Description = "This year the present of the teacher will be two boxes of flowers",
                 NeededAmount = 80,
+                AmountForPay = 5
             };
 
             Christmas = gift;

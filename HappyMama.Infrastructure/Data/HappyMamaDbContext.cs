@@ -19,13 +19,13 @@ namespace HappyMama.Infrastructure.Data
             builder.Entity<EventParent>()
                .HasKey(ep => new { ep.EventId, ep.ParentId });
 
-            builder.ApplyConfiguration(new AdminConfiguration());
-            builder.ApplyConfiguration(new ParentConfiguration());
-            builder.ApplyConfiguration(new TeacherConfiguration());
-            builder.ApplyConfiguration(new EventConfiguration());
-            builder.ApplyConfiguration(new NewsConfiguration());
-            builder.ApplyConfiguration(new ThemeConfiguration());
-            builder.ApplyConfiguration(new PostConfiguration());       
+                    builder.ApplyConfiguration(new AdminConfiguration());
+                    builder.ApplyConfiguration(new ParentConfiguration());
+                    builder.ApplyConfiguration(new TeacherConfiguration());
+                    builder.ApplyConfiguration(new EventConfiguration());
+                    builder.ApplyConfiguration(new NewsConfiguration());
+                    builder.ApplyConfiguration(new ThemeConfiguration());
+                    builder.ApplyConfiguration(new PostConfiguration());
 
 
 

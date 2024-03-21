@@ -30,6 +30,13 @@ namespace HappyMama.Infrastructure.Data.DataModels
         public decimal NeededAmount { get; set; }
 
         [Required]
+
+        [Column(TypeName = "decimal(18,2)")]
+        [Comment("Amount the parent must pay for the event")]
+        public decimal AmountForPay { get; set; }
+
+
+        [Required]
         [Comment("The last date when the parents can pay for the event")]
         public DateTime DeadTime { get; set; }
 
