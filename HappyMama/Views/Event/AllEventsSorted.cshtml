@@ -33,18 +33,29 @@
 <div class="text-center row">
     @foreach (var e in Model.Events)
     {
-        <div class="card col-4" style="width: 20rem;">
+        <div class="card col-4" style="width: 25rem;">
             <div class="card-body">
                 <h5 class="card-title mt-1">@e.Name</h5>
                 <p class="mb-0"><span class="fw-bold">Description : </span>@e.Description</p>
                 <p class="mb-0"><span class="fw-bold">Needed Amount: </span>@e.NeededAmount BGN</p>
                 <p class="mb-0"><span class="fw-bold">Deadline time: </span>@e.DeadLineTime</p>
                 <p class="mb-0"><span class="fw-bold">Creator of Event: </span>@e.Creator</p>
+                @if (User.Identity.Name == e.Creator)
+                {
+                    <a asp-controller="Event" asp-action="EditEvent" type="submit" asp-route-id="@e.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Edit</a>
+                    <a asp-controller="Event" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
+                }
+                else
+                {
+                    <form class="input-group-sm " asp-controller="Event" asp-action="Join" asp-route-id="@e.Id">
+                        <input type="submit" value="Pay for event" class="fs-6 btn btn-warning mb-3 w-100 p-3 fw-bold" />
+                    </form>
+                }
             </div>
         </div>
     }
 
-    <!-- Pagination controls -->
+   
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             @for (var i = 1; i <= Model.TotalPages; i++)

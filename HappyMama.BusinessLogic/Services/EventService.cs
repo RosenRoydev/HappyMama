@@ -113,7 +113,7 @@ namespace HappyMama.BusinessLogic.Services
             var totalEvents = await events.CountAsync();
 
             var filteredEvents = await events.
-                 Skip(currentPage - 1 * eventsPerPage)
+                 Skip((currentPage - 1) * eventsPerPage)
                  .Take(eventsPerPage)
                  .Select(e => new EventIndexViewModel
                  {

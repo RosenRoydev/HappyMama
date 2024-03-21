@@ -37,10 +37,11 @@ namespace HappyMama.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllEventsSorted(string searchTerm , EventEnum sorting, int page = 1, int eventsPerPage = 1)
+        [TeacherEventFilter]
+        public async Task<IActionResult> AllEventsSorted(string searchTerm , EventEnum sorting, int page = 1)
         {
             var model = await eventService
-                .AllEventsSortedAsync(searchTerm, sorting, page, eventsPerPage);
+                .AllEventsSortedAsync(searchTerm, sorting, page, EventIndexViewModel.EventsPerPage);
 
          return View(model);
         }
