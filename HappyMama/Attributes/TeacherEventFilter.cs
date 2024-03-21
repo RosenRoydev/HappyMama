@@ -19,7 +19,7 @@ namespace HappyMama.Attributes
                 context.Result = new StatusCodeResult(StatusCodes.Status401Unauthorized);
             }
 
-            if (service != null && service.ExistById(context.HttpContext.User.Id()).Result == false) 
+            if (service != null && service.ExistById(context.HttpContext.User.Id()).Result == true) 
             {
 
                 context.Result =  new StatusCodeResult(StatusCodes.Status401Unauthorized);
