@@ -1,4 +1,5 @@
 ﻿using HappyMama.BusinessLogic.ViewModels.Parent;
+using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 namespace HappyMama.BusinessLogic.Contracts
@@ -10,5 +11,6 @@ namespace HappyMama.BusinessLogic.Contracts
 
 		Task<bool> ExistByIdAsync (string Id);
 		Task AddParentAsync(string Id, AddParentFormModel model);
+		Task <Parent> ParentByIntIdAsync(int Id);
 	}
 }

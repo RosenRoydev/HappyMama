@@ -40,6 +40,7 @@ namespace HappyMama.BusinessLogic.Services
                 Name = model.Name,
                 Description = model.Description,
                 NeededAmount = model.NeededAmount,
+                AmountForPay = model.SumForPay,
                 DeadTime = model.DeadlineTime,
                 CreatorId = GetUserId(currentUser),
                 
@@ -161,6 +162,7 @@ namespace HappyMama.BusinessLogic.Services
                 entity.Name = model.Name;
                 entity.Description = model.Description;
                 entity.DeadTime = model.DeadlineTime;
+                entity.AmountForPay = model.SumForPay;
                 entity.NeededAmount = model.NeededAmount;
                     
                 context.SaveChanges();
@@ -183,6 +185,7 @@ namespace HappyMama.BusinessLogic.Services
                     Description = e.Description,
                     DeadlineTime = e.DeadTime,
                     NeededAmount = e.NeededAmount,
+                    SumForPay = e.AmountForPay,
                     
                 })
                 .FirstOrDefaultAsync();
@@ -190,7 +193,40 @@ namespace HappyMama.BusinessLogic.Services
             return model;
 		}
 
-		private string GetUserId(ClaimsPrincipal user)
+        public async Task PayForEventAsync(string userId , EventPayModel model)
+        {
+            var eventForPay = await context.Events
+                .Where(e => e.Id == model.Id)
+                .FirstOrDefaultAsync();
+
+            var parentWhoPay = context.Parents
+                .Where(p => p.UserId == userId)
+                .FirstOrDefault();
+
+            if (parentWhoPay != null && parentWhoPay.Amount >= eventForPay?.AmountForPay)
+            {
+                parentWhoPay.Amount -= eventForPay.AmountForPay;
+            }
+
+            if (eventForPay != null && eventForPay.NeededAmount > 0)
+            {
+                eventForPay.Id = model.Id;
+                eventForPay.NeededAmount -= model.PaySum;
+                
+            }
+              
+            var eventParent = new EventParent
+            {
+                EventId = eventForPay.Id,
+                ParentId = parentWhoPay.Id
+            };
+
+            await context.EventsParents.AddAsync(eventParent);
+            await context.SaveChangesAsync();
+
+        }
+
+        private string GetUserId(ClaimsPrincipal user)
         {
             return user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }

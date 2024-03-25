@@ -10,6 +10,8 @@ namespace HappyMama.BusinessLogic.Constants
 
         public const string NeededAmountRestrict = "The sum for {0} must be between {1} and {2} BGN";
 
+        public const string SumForPayRestrict = "The sum for {0} must be between {1} and {2} BGN";
+
         public const string InvalidAmountFormat = "The format of Amount exist only digits and . between them";
 
         public const string NotCorrectDateFormat = "The Date  must be in format dd/MM/yyyy hh:mm:ss";

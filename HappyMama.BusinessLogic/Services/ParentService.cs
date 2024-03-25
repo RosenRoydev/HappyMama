@@ -7,7 +7,7 @@ using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
 
 namespace HappyMama.BusinessLogic.Services
 {
-	public class ParentService : IParentService
+    public class ParentService : IParentService
 	{
 		private readonly HappyMamaDbContext context;
 		public ParentService(HappyMamaDbContext _context)
@@ -51,5 +51,12 @@ namespace HappyMama.BusinessLogic.Services
 			return await context.Parents
 				.AnyAsync(p => p.LastName == LastName);
 		}
-	}
+
+        public async  Task <Parent> ParentByIntIdAsync(int Id)
+        {
+          return await context.Parents.
+				Where(p => p.Id == Id).FirstOrDefaultAsync();
+
+        }
+    }
 }

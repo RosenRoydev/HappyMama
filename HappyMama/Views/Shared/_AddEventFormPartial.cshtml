@@ -18,7 +18,12 @@
 		<label for="Amount">Amount</label>
 	</div>
 	<div class="form-floating mb-3">
-		<input asp-for="DeadlineTime" class="form-control" aria-required="true" placeholder="Last date for payment" min="@DateTime.UtcNow" />
+		<input asp-for="SumForPay" class="form-control" id="Sum for pay" placeholder="Sum what parents must pay for event">
+		<span asp-validation-for="SumForPay" class="small text-danger"></span>
+		<label for="SumForPay">Sum for pay</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input asp-for="DeadlineTime" class="form-control" aria-required="true" placeholder="Last date for payment"  />
 		<label for="DeadlineTime">Last day for payment</label>
 		<span asp-validation-for="DeadlineTime" class="text-danger"></span>
 	</div>

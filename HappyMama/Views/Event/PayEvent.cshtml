@@ -1,0 +1,24 @@
+﻿@model EventPayModel
+
+@{
+    ViewBag.Title = "Pay for event";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="EventName"></label>
+        <input asp-for="EventName" class="form-control" readonly />
+        <label asp-for="PaySum"></label>
+        <input asp-for="PaySum" class="form-control" readonly value="@Model.PaySum"  placeholder="Sum for pay">
+    </div>
+    <div class="text-center">
+        <input class="btn btn-warning mt-3" type="submit" value="Pay" />
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

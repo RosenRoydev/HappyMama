@@ -8,6 +8,9 @@
         public const double EventSumMin = 50;
         public const double EventSumMax = 500;
 
+        public const double EventSumForPayMin = 5;
+        public const double EventSumForPayMax = 50;
+
         public const double  AmountMinValue = 30;
         public const double  AmountMaxValue = 300;
 

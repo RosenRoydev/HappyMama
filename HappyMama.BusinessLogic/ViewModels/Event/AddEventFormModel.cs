@@ -25,11 +25,19 @@ public class AddEventFormModel
   
     public string Description { get; set; } = string.Empty;
 
+
+
     [Required(ErrorMessage = RequiredField)]
     [Range(EventSumMin,
         EventSumMax,
         ErrorMessage = NeededAmountRestrict)]
-    public decimal NeededAmount { get; set; } 
+    public decimal NeededAmount { get; set; }
+
+    [Required(ErrorMessage = RequiredField)]
+    [Range(EventSumForPayMin,
+        EventSumForPayMax,
+        ErrorMessage = SumForPayRestrict)]
+    public decimal SumForPay { get; set; }
 
     [Required(ErrorMessage = RequiredField)]   
     [Display(Name = "Last date for payment")]

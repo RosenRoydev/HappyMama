@@ -13,6 +13,7 @@ namespace HappyMama.BusinessLogic.Contracts
         Task<AddEventFormModel?> GetEventModelById(int id);
         Task EditEventAsync(int id,AddEventFormModel model);
         Task<bool> CorrectEditor(string Id);
+        Task PayForEventAsync( string userId , EventPayModel model);
        
         
     }
