@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Security.Claims;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;
+using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
 
 
 
@@ -207,7 +208,7 @@ namespace HappyMama.BusinessLogic.Services
             if (await context.EventsParents.AnyAsync
                (ep => ep.EventId == eventForPay.Id && ep.ParentId == parentWhoPay.Id))
             {
-                throw new AlreadyPaidEventException("You  already paid for this event!");
+                throw new AlreadyPaidEventException(AlreadyPaidEvent);
             }
 
             if (parentWhoPay != null && parentWhoPay.Amount >= eventForPay?.AmountForPay)

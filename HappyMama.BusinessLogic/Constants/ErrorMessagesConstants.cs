@@ -21,5 +21,8 @@ namespace HappyMama.BusinessLogic.Constants
         public const string TeacherExist = "Teacher with this names is already added in HappyMama";
 
         public const string ParentExist = "Parent with this names is already added in HappyMama";
-	}
+
+        public const string AlreadyPaidEvent = "You  already paid for this event!";
+
+    }
 }
