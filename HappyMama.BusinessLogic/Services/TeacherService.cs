@@ -1,6 +1,7 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HappyMama.BusinessLogic.Services
@@ -8,6 +9,7 @@ namespace HappyMama.BusinessLogic.Services
     public class TeacherService : ITeacherService
     {
         private readonly HappyMamaDbContext context;
+       
 
         public TeacherService(HappyMamaDbContext _dbContext)
         {

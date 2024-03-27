@@ -54,5 +54,21 @@ namespace HappyMama.Controllers
 			return RedirectToAction(nameof(Index), "Home");
 
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> PaidEvents()
+		{
+			var parent = await parentService.ExistByIdAsync(User.Id());
+
+			if (parent == null)
+			{
+				return RedirectToAction(nameof(Index), "Home");
+			};
+
+			var model = await parentService.PaidEventsAsync(User.Id());
+
+			return View(model);
+
+		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.ViewModels.Event;
 using HappyMama.BusinessLogic.ViewModels.Parent;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
@@ -51,6 +52,26 @@ namespace HappyMama.BusinessLogic.Services
 			return await context.Parents
 				.AnyAsync(p => p.LastName == LastName);
 		}
+
+        public async Task<List<EventIndexViewModel>> PaidEventsAsync(string  Id)
+        {
+			var parent = await context.Parents
+				.Where(p => p.UserId == Id).FirstOrDefaultAsync();
+
+
+			var model = await context.EventsParents
+				.Where(ep => ep.ParentId == parent.Id)
+				.Select(ep => new EventIndexViewModel
+				{
+					Id = ep.EventId,
+					Name = ep.Event.Name,
+					Description = ep.Event.Description,
+					DeadLineTime = ep.Event.DeadTime.ToString(),
+					Creator = ep.Event.Creator.UserName,
+				}).ToListAsync();
+
+			return model;
+        }
 
         public async  Task <Parent> ParentByIntIdAsync(int Id)
         {

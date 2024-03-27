@@ -203,6 +203,12 @@ namespace HappyMama.BusinessLogic.Services
                 .Where(p => p.UserId == userId)
                 .FirstOrDefault();
 
+            if (await context.EventsParents.AnyAsync
+               (ep => ep.EventId == eventForPay.Id && ep.ParentId == parentWhoPay.Id))
+            {
+                throw new ArgumentException();
+            }
+
             if (parentWhoPay != null && parentWhoPay.Amount >= eventForPay?.AmountForPay)
             {
                 parentWhoPay.Amount -= eventForPay.AmountForPay;
@@ -214,6 +220,8 @@ namespace HappyMama.BusinessLogic.Services
                 eventForPay.NeededAmount -= model.PaySum;
                 
             }
+
+           
               
             var eventParent = new EventParent
             {

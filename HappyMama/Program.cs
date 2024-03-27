@@ -1,4 +1,6 @@
 using HappyMama.CustomModelBinders;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,8 +37,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
-
 await app.RunAsync();
+
+

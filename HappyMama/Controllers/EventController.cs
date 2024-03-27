@@ -14,10 +14,12 @@ namespace HappyMama.Controllers
     {
         private readonly IEventService eventService;
         private readonly IParentService parentService;
+       
         public EventController(IEventService _eventService,IParentService _parentService)
         {
             eventService = _eventService;
             parentService = _parentService;
+            
         }
 
         [HttpGet]
@@ -137,10 +139,9 @@ namespace HappyMama.Controllers
         [HttpPost]
         [ParentFilter]
 
-        public async Task <IActionResult> PayEvent(int Id,EventPayModel model,int userId)
+        public async Task <IActionResult> PayEvent(int Id,EventPayModel model)
         {
           
-
             
             if(model == null)
             {
@@ -166,7 +167,7 @@ namespace HappyMama.Controllers
 
             await eventService.PayForEventAsync( User.Id(),model);
 
-            return RedirectToAction(nameof(AllEventsSorted));
+            return RedirectToAction(nameof(ParentController.PaidEvents), "Parent");
         }
     }
 }

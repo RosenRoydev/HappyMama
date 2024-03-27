@@ -25,6 +25,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.UseSqlServer(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+
+            
             return services;
         }
 
@@ -37,7 +39,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 6;
             })
+                .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<HappyMamaDbContext>();
+
+            
 
             return services;
         }

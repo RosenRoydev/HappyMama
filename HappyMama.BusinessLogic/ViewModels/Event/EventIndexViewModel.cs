@@ -12,6 +12,7 @@ namespace HappyMama.BusinessLogic.ViewModels.Event
         public string NeededAmount { get; set; } = string.Empty;
 
         [Display(Name = "Last day for payment")]
+       
         public string DeadLineTime { get; set; } = string.Empty;
         public string CreatorId { get; set; } = string.Empty;
         public string Creator { get; set; } = string.Empty;

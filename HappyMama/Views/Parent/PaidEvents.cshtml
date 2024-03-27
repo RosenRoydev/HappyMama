@@ -1,0 +1,45 @@
+﻿@model List<EventIndexViewModel>
+
+<h1 class="mt-5 mb-4">Paid Events</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Last day for payment</th>
+                        <th>Creator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            <td>@item.DeadLineTime</td>
+                            <td>@item.Creator</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">
+                No paid events found.
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
