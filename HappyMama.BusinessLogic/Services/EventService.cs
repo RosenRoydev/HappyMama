@@ -1,5 +1,6 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
 using HappyMama.BusinessLogic.Enums;
+using HappyMama.BusinessLogic.Exceptions;
 using HappyMama.BusinessLogic.ViewModels.Event;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
@@ -206,7 +207,7 @@ namespace HappyMama.BusinessLogic.Services
             if (await context.EventsParents.AnyAsync
                (ep => ep.EventId == eventForPay.Id && ep.ParentId == parentWhoPay.Id))
             {
-                throw new ArgumentException();
+                throw new AlreadyPaidEventException("You  already paid for this event!");
             }
 
             if (parentWhoPay != null && parentWhoPay.Amount >= eventForPay?.AmountForPay)

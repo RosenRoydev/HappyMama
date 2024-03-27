@@ -3,9 +3,10 @@ using HappyMama.BusinessLogic.Contracts;
 using HappyMama.BusinessLogic.Enums;
 using HappyMama.BusinessLogic.ViewModels.Event;
 using HappyMama.Extensions;
-using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using HappyMama.BusinessLogic.Exceptions;
+
 
 namespace HappyMama.Controllers
 {
@@ -14,6 +15,7 @@ namespace HappyMama.Controllers
     {
         private readonly IEventService eventService;
         private readonly IParentService parentService;
+       
        
         public EventController(IEventService _eventService,IParentService _parentService)
         {
@@ -133,6 +135,7 @@ namespace HappyMama.Controllers
                
             };
 
+            
             return View(model);
         }
 
@@ -158,14 +161,17 @@ namespace HappyMama.Controllers
                 return View(model);
             }
 
-            var parent = await parentService.ExistByIdAsync(User.Id());
-
-            if (parent == null)
+            try
             {
-                RedirectToAction(nameof(Index));
+                await eventService.PayForEventAsync(User.Id(), model);
+            }
+            catch (AlreadyPaidEventException apee)
+            {
+             
+                return RedirectToAction(nameof(ParentController.PaidEvents), "Parent");
             }
 
-            await eventService.PayForEventAsync( User.Id(),model);
+            
 
             return RedirectToAction(nameof(ParentController.PaidEvents), "Parent");
         }
