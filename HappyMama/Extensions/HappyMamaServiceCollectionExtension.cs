@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ITeacherService, TeacherService>();
             services.AddScoped<IParentService, ParentService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<INewsService, NewsService>();
 
             return services;
         }

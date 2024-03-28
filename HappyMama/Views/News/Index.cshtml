@@ -1,0 +1,37 @@
+﻿@model AllNewsIndexModel
+
+@{
+	ViewBag.Title = "All news";
+}
+
+<h2 class="text-lg-center">@ViewBag.Title</h2>
+
+<div class="text-center row">
+	@foreach(var n in Model.News)
+	{
+		<div class="card mb-3" style="width: 18rem;">
+			<div class="card-body">
+				
+				<h5 class="card-title">@n.Title</h5>
+				<p class="card-text">@n.Description</p>
+				<p class="card-text">Contact person: @n.Creator</p>
+				<p class="card-text">Date: @n.CreatedOn</p>
+				
+			</div>
+
+		</div>
+		<nav aria-label="Page navigation">
+			<ul class="pagination justify-content-center">
+				@for (var i = 1; i <= Model.TotalPages; i++)
+				{
+					<li class="page-item">
+						<a class="page-link text-black" href="@Url.Action("Index", new { page = i })">@i</a>
+					</li>
+				}
+			</ul>
+		</nav>
+	}
+
+
+
+</div>
