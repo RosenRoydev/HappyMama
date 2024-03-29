@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace HappyMama.Attributes
 {
-    public class TeacherEventFilter : ActionFilterAttribute
+    public class TeacherFilter : ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext context)
+        public override  void OnActionExecuting(ActionExecutingContext context)
         {
-            base.OnActionExecuting(context);
+          
 
             var serviceProvider = context.HttpContext.RequestServices;
             var service = serviceProvider.GetService<ITeacherService>();
@@ -19,7 +19,7 @@ namespace HappyMama.Attributes
                 context.Result = new StatusCodeResult(StatusCodes.Status401Unauthorized);
             }
 
-            if (service != null && service.ExistById(context.HttpContext.User.Id()).Result == true) 
+            if (service != null && service.ExistById(context.HttpContext.User.Id()).Result == false) 
             {
 
                 context.Result =  new StatusCodeResult(StatusCodes.Status401Unauthorized);

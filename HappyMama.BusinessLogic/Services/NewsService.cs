@@ -1,25 +1,46 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
 using HappyMama.BusinessLogic.ViewModels.News;
 using HappyMama.Infrastructure.Data;
+using HappyMama.Infrastructure.Data.DataModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace HappyMama.BusinessLogic.Services
 {
-    
-    public class NewsService : INewsService
+
+	public class NewsService : INewsService
     {
         private readonly HappyMamaDbContext context;
+		private readonly IHttpContextAccessor accessor;
 
-        public NewsService(HappyMamaDbContext _context)
+		public NewsService(HappyMamaDbContext _context,IHttpContextAccessor _accessor)
         {
                 context = _context;
+                accessor = _accessor;
         }
-        public async Task<AllNewsIndexModel> AllNewsAsync(int currentPage = 1, int totalNewsOnPage = 1)
+
+		public async Task AddNewsAsync(string Id, NewsFormViewModel model)
+		{
+			var user = accessor.HttpContext.User;
+
+            var entity = new News()
+            {
+
+                Title = model.Title,
+                Description = model.Description,
+                CreatedOn = model.CreatedOn,
+                CreatorId = GetUserId(user),
+                
+                
+            };
+
+           await context.News.AddAsync(entity);
+            await context.SaveChangesAsync();
+		}
+
+		public async Task<AllNewsIndexModel> AllNewsAsync(int currentPage = 1, int totalNewsOnPage = 1)
         {
             var newsQuery = context.News.Include(n => n.Creator);
 
@@ -51,5 +72,10 @@ namespace HappyMama.BusinessLogic.Services
                     
                 };
         }
-    }
+
+		private string GetUserId(ClaimsPrincipal user)
+		{
+			return user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
+		}
+	}
 }

@@ -10,7 +10,7 @@ namespace HappyMama.Attributes
     {
         
 
-        public void OnActionExecuting(ActionExecutingContext context)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
             var  serviceProvider = context.HttpContext.RequestServices;
 
