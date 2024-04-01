@@ -24,5 +24,7 @@ namespace HappyMama.BusinessLogic.Constants
 
         public const string AlreadyPaidEvent = "You  already paid for this event!";
 
+        public const string NewsNotExist = "The news doesn't exist!";
+
     }
 }

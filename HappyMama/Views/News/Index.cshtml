@@ -20,7 +20,7 @@
 			@if (User.Identity.Name == n.Creator)
 			{
 				<a asp-controller="News" asp-action="EditNews" type="submit" asp-route-id="@n.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Edit</a>
-				<a asp-controller="News" asp-action="Delete" asp-route-id="@n.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
+				<a asp-controller="News" asp-action="DeleteNews" asp-route-id="@n.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
 			}
 		</div>
 		

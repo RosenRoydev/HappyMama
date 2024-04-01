@@ -1,5 +1,6 @@
 ﻿using HappyMama.Attributes;
 using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.Exceptions;
 using HappyMama.BusinessLogic.ViewModels.News;
 using HappyMama.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -11,9 +12,11 @@ namespace HappyMama.Controllers
     public class NewsController : Controller
     {
         private readonly INewsService newsService;
-        public NewsController(INewsService _newsService)
+        private readonly ILogger logger;
+        public NewsController(INewsService _newsService, ILogger<NewsController> _logger)
         {
             newsService = _newsService;
+            logger = _logger;
         }
 
         [HttpGet]
@@ -87,6 +90,40 @@ namespace HappyMama.Controllers
             }
 
            await newsService.EditNewsAsync(model.Id, model); 
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        [TeacherFilter]
+
+        public async Task <IActionResult> DeleteNews(int id)
+        {
+            var model = await newsService.GetNewsById(id);
+
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [TeacherFilter]
+        public async Task<IActionResult> DeleteNews(NewsFormViewModel model)
+        {
+            try
+            {
+              await  newsService.DeleteNewsAsync(model.Id);
+            }
+
+            catch (NewsNotExist nne)
+            {
+                logger.LogError("NewsController , DeleteNewsAction");
+                return RedirectToAction(nameof(Index));
+               
+            }
 
             return RedirectToAction(nameof(Index));
         }

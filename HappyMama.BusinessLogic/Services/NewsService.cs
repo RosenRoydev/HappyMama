@@ -1,4 +1,5 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.Exceptions;
 using HappyMama.BusinessLogic.ViewModels.News;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
@@ -73,6 +74,20 @@ namespace HappyMama.BusinessLogic.Services
 			};
 		}
 
+		public async Task DeleteNewsAsync(int id)
+		{
+			var entity = await context.News
+				.Where(n=> n.Id == id)
+				.FirstOrDefaultAsync();
+			if (entity == null)
+			{
+				throw new NewsNotExist(Constants.ErrorMessagesConstants.NewsNotExist);
+			}
+
+			context.News.Remove(entity);
+			await context.SaveChangesAsync();
+		}
+
 		public async Task EditNewsAsync(int id, NewsFormViewModel model)
 		{
 			var entity = await context.News
@@ -93,10 +108,12 @@ namespace HappyMama.BusinessLogic.Services
 			
 		}
 
+		
+
 		public async Task <NewsFormViewModel?> GetNewsById(int id)
 		{
 			var model = await context.News
-				.Where(n => n.Id != id)
+				.Where(n => n.Id == id)
 				.Select(n => new NewsFormViewModel
 				{
 					Id = n.Id,

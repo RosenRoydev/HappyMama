@@ -1,0 +1,23 @@
+﻿@model NewsFormViewModel
+
+
+<form method="post">
+	<div class="form-floating mb-3">
+		<input asp-for="Title" class="form-control" id="Name" placeholder="News title">
+		<span asp-validation-for="Title" class="small text-danger"></span>
+		<label for="Title">Title</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input asp-for="Description" class="form-control" id="Description" placeholder="Event Description">
+		<span asp-validation-for="Description" class="small text-danger"></span>
+		<label for="Description">Description</label>
+	</div>
+
+	<div class="form-floating mb-3">
+		<input asp-for="CreatedOn" class="form-control" id="Sum for pay" placeholder="News added on:">
+		<span asp-validation-for="CreatedOn" class="small text-danger"></span>
+		<label for="Created on">Created on</label>
+	</div>
+
+	<div class="text-center"> <input class="btn btn-warning mt-3 " type="submit" value="Delete" /> </div>
+</form>

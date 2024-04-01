@@ -15,12 +15,14 @@ namespace HappyMama.Controllers
     {
         private readonly IEventService eventService;
         private readonly IParentService parentService;
+        private readonly ILogger logger;
        
        
-        public EventController(IEventService _eventService,IParentService _parentService)
+        public EventController(IEventService _eventService,IParentService _parentService,ILogger<EventController> _logger)
         {
             eventService = _eventService;
             parentService = _parentService;
+            logger = _logger;
             
         }
 
@@ -163,6 +165,8 @@ namespace HappyMama.Controllers
 
             try
             {
+                logger.LogError("Event Controller, Pay for Event");
+
                 await eventService.PayForEventAsync(User.Id(), model);
             }
             catch (AlreadyPaidEventException apee)
