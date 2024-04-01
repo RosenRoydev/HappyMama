@@ -26,7 +26,7 @@ namespace HappyMama.Attributes
 
 			
 
-			if (adminService != null &&  adminService.ExistAdminById(context.HttpContext.User.Id()).Result == false  )
+			if (adminService != null &&  adminService.ExistAdminById(context.HttpContext.User.Id()).Result == false)
 			{ 
 			
 			  context.Result = new StatusCodeResult(StatusCodes.Status401Unauthorized);

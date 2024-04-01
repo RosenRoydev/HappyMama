@@ -11,6 +11,8 @@ namespace HappyMama.BusinessLogic.Contracts
     {
         public Task<AllNewsIndexModel> AllNewsAsync(int currentpage = 1, int totalNewsOnPage = 1);
         public Task AddNewsAsync(string Id, NewsFormViewModel model);
+        public Task EditNewsAsync (int id, NewsFormViewModel model);
+        public Task <NewsFormViewModel>GetNewsById(int id);
     }
 
 

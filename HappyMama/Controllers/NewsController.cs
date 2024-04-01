@@ -55,5 +55,40 @@ namespace HappyMama.Controllers
 
 			return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        [TeacherFilter]
+
+        public async Task <IActionResult> EditNews(int Id)
+        { 
+            var model = await newsService.GetNewsById(Id);
+
+            if(model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [TeacherFilter]
+        public async Task<IActionResult> EditNews(NewsFormViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+           await newsService.EditNewsAsync(model.Id, model); 
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

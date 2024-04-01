@@ -7,9 +7,9 @@ namespace HappyMama.Attributes
 {
     public class TeacherFilter : ActionFilterAttribute
     {
-        public override  void OnActionExecuting(ActionExecutingContext context)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-          
+            base.OnActionExecuting(context);
 
             var serviceProvider = context.HttpContext.RequestServices;
             var service = serviceProvider.GetService<ITeacherService>();

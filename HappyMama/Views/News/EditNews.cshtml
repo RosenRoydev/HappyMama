@@ -1,0 +1,14 @@
+﻿@model NewsFormViewModel
+
+@{
+	ViewBag.Title = "Edit News";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<partial name="_NewsFormPartial" model="@Model"></partial>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}
