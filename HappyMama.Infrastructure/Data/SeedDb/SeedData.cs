@@ -11,6 +11,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
         public Post AnswerForToni { get; set; }
         public Admin Admin {  get; set; }
         public Teacher Teacher { get; set; }
+        public Teacher AdminTeacher { get; set; }
         public Parent Parent { get; set; }
         public Parent AnotherParent { get; set; }
 
@@ -66,6 +67,17 @@ namespace HappyMama.Infrastructure.Data.SeedDb
                
             };
             Teacher = teacher;
+
+            Teacher adminTeacher = new Teacher()
+            {
+                Id = 3,
+                UserId = "579cfd9f-0dfd-4775-b05d-e2ca79d70b92",
+                FirstName = "Petia",
+                LastName = "Petrova",
+
+			};
+
+            AdminTeacher = adminTeacher;
         }
 
         private void SeedAdmin()

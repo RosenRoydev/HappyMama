@@ -10,7 +10,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
         {
             var data = new SeedData();
 
-            builder.HasData(new Teacher[] { data.Teacher });
+            builder.HasData(new Teacher[] { data.Teacher, data.AdminTeacher });
         }
     }
 }

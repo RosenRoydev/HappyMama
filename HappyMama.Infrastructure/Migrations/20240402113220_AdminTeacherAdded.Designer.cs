@@ -4,6 +4,7 @@ using HappyMama.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyMama.Infrastructure.Migrations
 {
     [DbContext(typeof(HappyMamaDbContext))]
-    partial class HappyMamaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240402113220_AdminTeacherAdded")]
+    partial class AdminTeacherAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
