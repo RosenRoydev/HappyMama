@@ -89,5 +89,43 @@ namespace HappyMama.Controllers
 
 			return RedirectToAction(nameof(AllThemes));
 		}
+
+		[HttpGet]
+		public async Task <IActionResult> DeleteTheme(int id)
+		{
+			var model = await forumService.GetThemeById(id);
+			
+			if (model.CreatorId  != User.Id())
+			{
+				return Unauthorized();
+			}
+
+			if (model != null)
+			{
+				return View(model);
+			}
+
+			return RedirectToAction(nameof(AllThemes));
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> DeleteTheme(AddThemeFormModel model)
+		{
+			if( model == null)
+			{
+				return BadRequest();
+			}
+
+			if(model.CreatorId != User.Id())
+			{
+				return Unauthorized();
+			}
+
+			await forumService.DeleteThemeAsync(model.Id);
+
+			return RedirectToAction(nameof(AllThemes));
+
+
+		}
 	}
 }

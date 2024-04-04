@@ -125,5 +125,19 @@ namespace HappyMama.BusinessLogic.Services
             
             
         }
-    }
+
+		public async Task DeleteThemeAsync(int id)
+		{
+			var model = await context.Themes
+                .Where (t => t.Id == id)
+                .FirstOrDefaultAsync();
+
+           if(model != null)
+            {
+                context.Themes.Remove(model);
+                await context.SaveChangesAsync();
+            }
+                
+		}
+	}
 }
