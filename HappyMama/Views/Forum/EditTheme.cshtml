@@ -1,0 +1,17 @@
+﻿@model AddThemeFormModel
+
+@{
+	ViewBag.Title = "Edit Theme";
+
+}
+
+<h2 class="text-center" @ViewBag.Title></h2>
+
+<partial name="_ThemeFormViewPartial" model="@Model" />
+
+
+
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

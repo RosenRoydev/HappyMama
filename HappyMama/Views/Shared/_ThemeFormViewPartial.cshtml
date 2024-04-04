@@ -1,0 +1,18 @@
+﻿@model AddThemeFormModel
+
+
+<form method="post">
+	<div class="form-floating mb-3">
+		<input asp-for="Title" class="form-control" id="Title" placeholder="Title">
+		<span asp-validation-for="Title" class="small text-danger"></span>
+		<label for="Title">Title</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input asp-for="CreatedOn" class="form-control" id="CreatedOn" placeholder="CreatedOn">
+		<span asp-validation-for="CreatedOn" class="small text-danger"></span>
+		<label for="CreatedOn">CreatedOn</label>
+	</div>
+	  <input type="hidden" name="CreatorId" value="@Model.CreatorId" />
+	<div class="text-center"> <input class="btn btn-warning mt-3 " type="submit" value="Add/Edit" /> </div>
+
+</form>
