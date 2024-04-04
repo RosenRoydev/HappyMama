@@ -99,7 +99,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
                 Id = 1,
                 CreatorId = Parent.UserId,
                 Title = "Problem with Toni",
-                CreatedOn = DateTime.UtcNow,
+                CreatedOn = new DateTime(2024 ,04 , 03, 13, 52, 21),
 
             };
 
@@ -112,7 +112,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
             {
                 Id = 1,
                 Content = "Hello i want to write Toni has problem with food . Do you have this problem ?",
-                CreatedOn = DateTime.UtcNow,
+                CreatedOn = new DateTime(2024, 04 , 03, 13, 52,21),
                 CreatorId = Parent.UserId,
                 ThemeId = ProblemWithToni.Id,
               
@@ -122,7 +122,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
             {
                 Id = 2,
                 Content = "I have the same problem",
-                CreatedOn = DateTime.UtcNow,
+                CreatedOn = new DateTime(2024, 04, 03, 13, 52, 21),
                 CreatorId = AnotherParent.UserId,
                 ThemeId = ProblemWithToni.Id,
             };
@@ -137,7 +137,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
             {
                 Id = 1,
                 Title = "Vaccine against Flu",
-                CreatedOn = DateTime.UtcNow,
+                CreatedOn = new DateTime(2024, 04, 03, 13, 52, 21),
                 Description = "All parents , who want their child to be vaccinated , please contact with me ." +
                 " The vaccination is organized by the Ministry of health and is for free!",
                 CreatorId = Teacher.UserId,
@@ -155,7 +155,7 @@ namespace HappyMama.Infrastructure.Data.SeedDb
                 Id = 1,
                 Name = "Christmas gifts for the teachers",
                 CreatorId = Admin.UserId,
-                DeadTime = DateTime.UtcNow,
+                DeadTime =new DateTime(2024, 04, 03, 13,52,21),
                 Description = "This year the present of the teacher will be two boxes of flowers",
                 NeededAmount = 80,
                 AmountForPay = 5

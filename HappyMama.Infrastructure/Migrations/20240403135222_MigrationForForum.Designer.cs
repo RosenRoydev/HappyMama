@@ -4,6 +4,7 @@ using HappyMama.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyMama.Infrastructure.Migrations
 {
     [DbContext(typeof(HappyMamaDbContext))]
-    partial class HappyMamaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240403135222_MigrationForForum")]
+    partial class MigrationForForum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,7 +123,7 @@ namespace HappyMama.Infrastructure.Migrations
                             Id = 1,
                             AmountForPay = 5m,
                             CreatorId = "579cfd9f-0dfd-4775-b05d-e2ca79d70b92",
-                            DeadTime = new DateTime(2024, 4, 3, 13, 52, 21, 0, DateTimeKind.Unspecified),
+                            DeadTime = new DateTime(2024, 4, 3, 13, 52, 21, 842, DateTimeKind.Utc).AddTicks(3267),
                             Description = "This year the present of the teacher will be two boxes of flowers",
                             Name = "Christmas gifts for the teachers",
                             NeededAmount = 80m
@@ -199,7 +201,7 @@ namespace HappyMama.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2024, 4, 3, 13, 52, 21, 0, DateTimeKind.Unspecified),
+                            CreatedOn = new DateTime(2024, 4, 3, 13, 52, 21, 842, DateTimeKind.Utc).AddTicks(3385),
                             CreatorId = "a05289cd-5411-45bb-b863-ba2394c21342",
                             Description = "All parents , who want their child to be vaccinated , please contact with me . The vaccination is organized by the Ministry of health and is for free!",
                             Title = "Vaccine against Flu"
@@ -321,7 +323,7 @@ namespace HappyMama.Infrastructure.Migrations
                         {
                             Id = 1,
                             Content = "Hello i want to write Toni has problem with food . Do you have this problem ?",
-                            CreatedOn = new DateTime(2024, 4, 3, 13, 52, 21, 0, DateTimeKind.Unspecified),
+                            CreatedOn = new DateTime(2024, 4, 3, 13, 52, 21, 842, DateTimeKind.Utc).AddTicks(3556),
                             CreatorId = "228dfc0a-78a8-4163-aff3-94a5c1014fbb",
                             ThemeId = 1
                         },
@@ -329,7 +331,7 @@ namespace HappyMama.Infrastructure.Migrations
                         {
                             Id = 2,
                             Content = "I have the same problem",
-                            CreatedOn = new DateTime(2024, 4, 3, 13, 52, 21, 0, DateTimeKind.Unspecified),
+                            CreatedOn = new DateTime(2024, 4, 3, 13, 52, 21, 842, DateTimeKind.Utc).AddTicks(3556),
                             CreatorId = "03d74db7-55ee-4ee0-ae1d-7c16a4578141",
                             ThemeId = 1
                         });
@@ -437,7 +439,7 @@ namespace HappyMama.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2024, 4, 3, 13, 52, 21, 0, DateTimeKind.Unspecified),
+                            CreatedOn = new DateTime(2024, 4, 3, 13, 52, 21, 842, DateTimeKind.Utc).AddTicks(3457),
                             CreatorId = "228dfc0a-78a8-4163-aff3-94a5c1014fbb",
                             Title = "Problem with Toni"
                         });
