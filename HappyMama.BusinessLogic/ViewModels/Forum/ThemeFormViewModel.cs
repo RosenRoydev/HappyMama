@@ -13,6 +13,7 @@ namespace HappyMama.BusinessLogic.ViewModels.Forum
 		public string Title {  get; set; } = string.Empty;
 		public string CreatedOn { get; set; } = string.Empty;
 		public string Creator { get; set; } = string.Empty;
+		public List <PostFormViewModel> Posts { get; set; } = new List<PostFormViewModel>();
 
 
 	}

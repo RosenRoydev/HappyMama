@@ -127,5 +127,15 @@ namespace HappyMama.Controllers
 
 
 		}
+
+		[HttpGet("/Forum/Answers/{Id}")]
+		public async Task<IActionResult>AllPosts(int Id,int currentPage = 1)
+		{
+			var model = await forumService.AllPostsAsync( Id, currentPage, PostFormViewModel.PostPerPage);
+
+			return View(model);
+
+
+		}
 	}
 }

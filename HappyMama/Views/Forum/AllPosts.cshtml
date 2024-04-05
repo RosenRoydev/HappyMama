@@ -1,0 +1,43 @@
+﻿@model AllPostFormViewModel
+
+@{
+
+	ViewBag.Title = "AllAnswers";
+}
+
+<h2 class="text-center" @ViewBag.Title></h2>
+
+<div class="text-center row">
+	@foreach (var p in Model.Posts)
+	{
+		<div class="card">
+			<div class="card-body">
+				Author: <h5 class="card-title">@p.Creator</h5>
+				Post: <p class="card-text">@p.Content</p>
+				<a asp-controller="Forum" asp-action="AddPost" type="submit" asp-route-id="@p.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Answer</a>
+			</div>
+			@if (User.Identity.Name == p.Creator)
+			{
+			
+				<a asp-controller="Forum" asp-action="DeletePost" asp-route-id="@p.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
+				<a asp-controller="Forum" asp-action="EditPost" asp-route-id="@p.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">EditPost</a>
+			}
+		</div>
+	}
+
+
+	<nav aria-label="Page navigation">
+		<ul class="pagination justify-content-center">
+			@for (var i = 1; i <= Model.TotalPages; i++)
+			{
+				<li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+					<a class="page-link text-black" href="@Url.Action("AllPosts", new { page = i })">@i</a>
+				</li>
+			}
+		</ul>
+	</nav>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}
