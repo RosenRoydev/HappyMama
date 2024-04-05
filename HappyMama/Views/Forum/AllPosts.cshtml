@@ -11,17 +11,22 @@
 	@foreach (var p in Model.Posts)
 	{
 		<div class="card">
+			<div class="card-header"> 
+				Author: @p.Creator
+				</div>
+				
 			<div class="card-body">
-				Author: <h5 class="card-title">@p.Creator</h5>
-				Post: <p class="card-text">@p.Content</p>
-				<a asp-controller="Forum" asp-action="AddPost" type="submit" asp-route-id="@p.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Answer</a>
+				 <p class="card-text" >Created on: @p.CreatedOn</p>
+				<h5 class="card-text"> @p.Content</h5>
+				<a asp-controller="Forum" asp-action="AddPost" type="submit" asp-route-id="@p.Id" class="btn btn-info mb-2 w-20 p-3 fw-bold">Answer</a>
+				@if (User.Identity.Name == p.Creator)
+				{
+
+					<a asp-controller="Forum" asp-action="DeletePost" type="submit" asp-route-id="@p.Id" class="btn btn-danger mb-2 w-20 p-3 fw-bold">Delete</a>
+					<a asp-controller="Forum" asp-action="EditPost" type="submit" asp-route-id="@p.Id" class="btn btn-warning mb-2 w-20 p-3 fw-bold">EditPost</a>
+				}
 			</div>
-			@if (User.Identity.Name == p.Creator)
-			{
 			
-				<a asp-controller="Forum" asp-action="DeletePost" asp-route-id="@p.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
-				<a asp-controller="Forum" asp-action="EditPost" asp-route-id="@p.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">EditPost</a>
-			}
 		</div>
 	}
 

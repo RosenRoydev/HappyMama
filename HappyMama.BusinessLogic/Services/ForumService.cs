@@ -5,6 +5,7 @@ using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Nancy.Validation;
 using System.Security.Claims;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
@@ -184,6 +185,11 @@ namespace HappyMama.BusinessLogic.Services
 				TotalPosts = totalPosts
 			};
 
+		}
+
+		public Task AddPost(int themeId, PostFormViewModel model)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
