@@ -13,7 +13,7 @@ namespace HappyMama.BusinessLogic.Contracts
 		public Task <AddThemeFormModel?> GetThemeById(int id);
 		public Task DeleteThemeAsync(int id);
 		public Task<AllPostFormViewModel> AllPostsAsync(int themeId, int currentPage = 1 , int PostsPerPage = 1);
-		public Task AddPost(int themeId, PostFormViewModel model);
+		public Task AddPostAsync(int themeId, AddPostFormModel model);
 
     }
 }

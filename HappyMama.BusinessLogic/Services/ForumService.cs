@@ -179,6 +179,7 @@ namespace HappyMama.BusinessLogic.Services
 
 			return new AllPostFormViewModel
 			{
+				ThemeId = themeId,
 				TotalPages = totalPages,
 				CurrentPage = currentPage,
 				Posts = posts,
@@ -187,9 +188,27 @@ namespace HappyMama.BusinessLogic.Services
 
 		}
 
-		public Task AddPost(int themeId, PostFormViewModel model)
+		public async Task AddPostAsync(int themeId , AddPostFormModel model)
 		{
-			throw new NotImplementedException();
+			var user = httpContextAccessor.HttpContext.User;
+
+			
+			
+
+			var post = new Post()
+			{
+				Content = model.Content,
+				CreatedOn = model.CreatedOn,
+				CreatorId = GetUserId(user),
+				ThemeId = themeId,
+
+
+			};
+			
+			await context.Posts.AddAsync(post);
+			await context.SaveChangesAsync();
 		}
+
+	
 	}
 }

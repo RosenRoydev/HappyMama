@@ -2,6 +2,7 @@
 {
 	public class AllPostFormViewModel
 	{
+		public int ThemeId {  get; set; }
 		public int TotalPosts { get; set; }
 
 		public int CurrentPage { get; set; }	

@@ -2,6 +2,7 @@
 using HappyMama.BusinessLogic.Enums;
 using HappyMama.BusinessLogic.ViewModels.Forum;
 using HappyMama.Extensions;
+using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -136,6 +137,32 @@ namespace HappyMama.Controllers
 			return View(model);
 
 
+		}
+
+        [HttpGet("/Forum/AddPost/{ThemeId}")]
+        public IActionResult AddPost(int themeId)
+		{
+            var model = new AddPostFormModel();
+            model.ThemeId = themeId; 
+            return View(model);
+        }
+
+		[HttpPost("/Forum/AddPost/{ThemeId}")]
+		public async Task<IActionResult> AddPost (int themeId,  AddPostFormModel model)
+		{
+			if (model == null)
+			{
+				return BadRequest();
+			}
+
+			if (ModelState.IsValid)
+			{
+				return View(model);
+			}
+
+			await forumService.AddPostAsync( themeId, model);
+
+			return RedirectToAction("AllPosts" ,new { Id = themeId });
 		}
 	}
 }
