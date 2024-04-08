@@ -6,6 +6,8 @@ using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Nancy.Validation;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.WebSockets;
 using System.Security.Claims;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
@@ -209,6 +211,40 @@ namespace HappyMama.BusinessLogic.Services
 			await context.SaveChangesAsync();
 		}
 
-	
-	}
+        public async Task EditPostAsync(int Id, AddPostFormModel model)
+        {
+			var post = await context.Posts
+				.Where(p => p.Id == Id)
+				.FirstOrDefaultAsync();
+
+			if (post != null)
+			{
+
+
+				post.Content = model.Content;
+				post.CreatedOn = model.CreatedOn;
+				
+
+				await context.SaveChangesAsync();
+			}
+
+           
+        }
+
+        public async Task<AddPostFormModel?> GetPostById(int Id)
+        {
+            var model = await context.Posts
+				.Where (p => p.Id == Id)
+				.Select(p => new AddPostFormModel()
+				{
+					Content = p.Content,
+					CreatedOn = p.CreatedOn,
+					CreatorId	= p.CreatorId,
+					ThemeId = p.ThemeId,
+				})
+				.FirstOrDefaultAsync();
+
+			return model;
+        }
+    }
 }

@@ -164,5 +164,48 @@ namespace HappyMama.Controllers
 
 			return RedirectToAction("AllPosts" ,new { Id = themeId });
 		}
+
+		[HttpGet] 
+		public async Task <IActionResult> EditPost(int Id)
+		{
+			var model = await forumService.GetPostById(Id);
+
+			if (model == null)
+			{
+				return BadRequest();
+			}
+
+			if(model.CreatorId != User.Id())
+			{
+				return Unauthorized();
+			}
+
+			return View(model);
+		}
+
+		[HttpPost]
+		public async Task <IActionResult> EditPost(int Id, AddPostFormModel model)
+		{
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            if (model.CreatorId != User.Id())
+            {
+                return Unauthorized();
+            }
+
+			if (!ModelState.IsValid)
+			{
+				return View(model);
+			}
+
+			await forumService.EditPostAsync(Id, model);
+
+			int themeId = model.ThemeId;
+
+			return RedirectToAction("AllPosts", new { Id = themeId });
+        }
 	}
 }
