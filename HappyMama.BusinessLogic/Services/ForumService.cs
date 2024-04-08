@@ -246,5 +246,19 @@ namespace HappyMama.BusinessLogic.Services
 
 			return model;
         }
-    }
+
+		public async Task DeletePostByIdAsync(int postId)
+		{
+			var post = await context.Posts
+				.Where(p => p.Id == postId)
+				.FirstOrDefaultAsync();
+			
+			if(post != null)
+			{
+				context.Posts.Remove(post);
+
+				await context.SaveChangesAsync();
+			}
+		}
+	}
 }

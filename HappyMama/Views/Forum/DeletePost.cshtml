@@ -1,0 +1,31 @@
+﻿@model AddPostFormModel
+
+@{
+	ViewBag.Title = "Delete Post";
+
+}
+
+<h2 class="text-center" @ViewBag.Title></h2>
+
+<form method="post">
+	<div class="form-floating mb-3">
+		<input asp-for="Content" class="form-control" id="Title" placeholder="Title">
+		<span asp-validation-for="Content" class="small text-danger"></span>
+		<label for="Content">Content</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input asp-for="CreatedOn" class="form-control" id="CreatedOn" placeholder="CreatedOn">
+		<span asp-validation-for="CreatedOn" class="small text-danger"></span>
+		<label for="CreatedOn">CreatedOn</label>
+	</div>
+	<input type="hidden" name="CreatorId" value="@Model.CreatorId" />
+	<input type="hidden" name="ThemeId" value="@Model.ThemeId" />
+	<div class="text-center"> <input class="btn btn-danger mt-3 " type="submit" value="Delete" /> </div>
+
+</form>
+
+
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

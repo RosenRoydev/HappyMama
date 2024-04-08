@@ -162,7 +162,7 @@ namespace HappyMama.Controllers
 
 			await forumService.AddPostAsync( themeId, model);
 
-			return RedirectToAction("AllPosts" ,new { Id = themeId });
+			return RedirectToAction(nameof(AllPosts) ,new { Id = themeId });
 		}
 
 		[HttpGet] 
@@ -205,7 +205,47 @@ namespace HappyMama.Controllers
 
 			int themeId = model.ThemeId;
 
-			return RedirectToAction("AllPosts", new { Id = themeId });
+			return RedirectToAction(nameof(AllPosts), new { Id = themeId });
         }
+
+		[HttpGet]
+
+		public async Task<IActionResult> DeletePost(int Id)
+		{
+			var model = await forumService.GetPostById(Id);
+
+			if(model == null)
+			{
+				return BadRequest();
+			}
+
+			if(model.CreatorId != User.Id())
+			{
+				return Unauthorized();
+			}
+
+			return View(model);
+		}
+
+		[HttpPost]
+
+		public async Task<IActionResult> DeletePost(int Id, AddPostFormModel model)
+		{
+			if (model == null)
+			{
+				return BadRequest();
+
+			}
+
+			if (model.CreatorId != User.Id())
+			{
+				return Unauthorized();
+			}
+
+			await forumService.DeletePostByIdAsync(Id);
+
+			return RedirectToAction(nameof(AllPosts), new {Id = model.ThemeId});
+		}
+
 	}
 }
