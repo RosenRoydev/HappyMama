@@ -25,4 +25,8 @@
     <ProjectReference Include="..\HappyMama.BusinessLogic\HappyMama.BusinessLogic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
