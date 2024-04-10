@@ -6,6 +6,7 @@ using HappyMama.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using HappyMama.BusinessLogic.Exceptions;
+using HappyMama.BusinessLogic.Extensions;
 
 
 namespace HappyMama.Controllers
@@ -37,20 +38,24 @@ namespace HappyMama.Controllers
 
         [HttpGet]
         [AdminFilter]
-        public IActionResult AddEvent()
+        public IActionResult AddEvent(string info)
         {
             var model = new AddEventFormModel();
+
+           
 
             return View(model);
         }
 
         [HttpGet]
-        [TeacherFilter]
+        [NotForTeacherFilter]
         public async Task<IActionResult> AllEventsSorted(string searchTerm, EventEnum sorting, int page = 1)
         {
             var model = await eventService
                 .AllEventsSortedAsync(searchTerm, sorting, page, EventIndexViewModel.EventsPerPage);
 
+            
+            
             return View(model);
         }
 
@@ -82,14 +87,20 @@ namespace HappyMama.Controllers
 
         [HttpGet]
         [AdminFilter]
-        public async Task<IActionResult> EditEvent(int Id)
+        public async Task<IActionResult> EditEvent(int Id, string information)
         {
             if (await eventService.ExistEventByIdAsync(Id) == false)
             {
                 return BadRequest();
             }
 
+            
             var model = await eventService.GetEventModelById(Id);
+
+            if(information != model.GetInformation())
+            {
+                return BadRequest();
+            }
 
             return View(model);
         }
@@ -118,7 +129,7 @@ namespace HappyMama.Controllers
         [HttpGet]
         [ParentFilter]
 
-        public async Task <IActionResult> PayEvent(int Id)
+        public async Task <IActionResult> PayEvent(int Id, string information)
         {
 
             var eventForPay = await eventService.GetEventModelById(Id);
@@ -129,6 +140,12 @@ namespace HappyMama.Controllers
                 return BadRequest();
             }
 
+            if(information != eventForPay.GetInformation()) 
+            { 
+                return BadRequest(); 
+            
+            }
+            
             var model = new EventPayModel()
             {
                 Id = eventForPay.Id,
@@ -144,7 +161,7 @@ namespace HappyMama.Controllers
         [HttpPost]
         [ParentFilter]
 
-        public async Task <IActionResult> PayEvent(int Id,EventPayModel model)
+        public async Task <IActionResult> PayEvent(int Id,EventPayModel model,string info)
         {
           
             

@@ -1,4 +1,6 @@
 using HappyMama.CustomModelBinders;
+using HappyMama.Infrastructure.Data.DataModels;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,7 @@ builder.Services.AddControllersWithViews()
     {
         options.ModelBinderProviders.Insert(0,new DateTimeCustomBinderProvider());
         options.ModelBinderProviders.Insert(1, new DecimalCustomBinderProvider());
+        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
     });
 
 builder.Services.AddApplicationService();
@@ -38,8 +41,29 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "PayEvent",
+        pattern: "/Event/PayEvent/{id}/{information}",
+        defaults: new { Controller = "Event", Action = "PayEvent" });
+
+    endpoints.MapControllerRoute(
+        name: "PayEvent",
+        pattern: "/Event/EditEvent/{id}/{information}",
+        defaults: new { Controller = "Event", Action = "EditEvent" });
+
+    endpoints.MapControllerRoute(
+        name: "PayEvent",
+        pattern: "/Event/DeleteEvent/{id}/{information}",
+        defaults: new { Controller = "Event", Action = "DeleteEvent" });
+
+    app.MapDefaultControllerRoute();
+    app.MapRazorPages();
+
+});
+
 await app.AddAdminRoleAsync();
 
 await app.RunAsync();

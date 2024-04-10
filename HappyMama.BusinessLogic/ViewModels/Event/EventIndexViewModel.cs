@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HappyMama.BusinessLogic.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace HappyMama.BusinessLogic.ViewModels.Event
 {
-    public class EventIndexViewModel
+    public class EventIndexViewModel : IEventInfo
     {
 
         public const int EventsPerPage = 3;

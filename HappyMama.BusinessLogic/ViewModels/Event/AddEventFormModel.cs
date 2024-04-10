@@ -1,4 +1,5 @@
-﻿using HappyMama.BusinessLogic.CustomAttributes;
+﻿using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.CustomAttributes;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
@@ -6,7 +7,7 @@ using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
 namespace HappyMama.BusinessLogic.ViewModels.Event;
 
-public class AddEventFormModel
+public class AddEventFormModel : IEventInfo
 {
         [Key]
         public int Id { get; set; }
