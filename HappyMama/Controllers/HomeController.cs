@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using static HappyMama.BusinessLogic.Constants.RoleConstants;
 
 namespace HappyMama.Controllers
 {
@@ -13,8 +14,14 @@ namespace HappyMama.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
+            if (User.IsInRole(AdminRole))
+            {
+                return  RedirectToAction("Index" , "AdminHome" , new {area = "Admin"});
+            }
+
             return View();
         }
 

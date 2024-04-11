@@ -45,6 +45,10 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
+            name: "areas",
+            pattern: "{area:exists}/{controller=AdminHome}/{action=index}/{id?}");
+
+    endpoints.MapControllerRoute(
         name: "PayEvent",
         pattern: "/Event/PayEvent/{id}/{information}",
         defaults: new { Controller = "Event", Action = "PayEvent" });
@@ -63,6 +67,8 @@ app.UseEndpoints(endpoints =>
     app.MapRazorPages();
 
 });
+
+
 
 await app.AddAdminRoleAsync();
 
