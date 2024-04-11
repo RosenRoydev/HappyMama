@@ -1,4 +1,5 @@
-﻿@model AllThemesViewModel
+﻿@using HappyMama.Extensions
+@model AllThemesViewModel
 
 @{
 	ViewBag.Title = "All Themes";
@@ -42,7 +43,7 @@
                 <p class="mb-0"><span class="fw-bold">Creator : </span>@t.Creator</p>
                 <p class="mb-0"><span class="fw-bold">Created on: </span>@t.CreatedOn</p>
                 
-                @if (User.Identity.Name == t.Creator)
+                @if (User.Identity.Name == t.Creator || User.IsAdmin())
                 {
                     <a asp-controller="Forum" asp-action="EditTheme" type="submit" asp-route-id="@t.Id" class="btn btn-info mb-2 w-100 p-3 fw-bold">Edit</a>
                     <a asp-controller="Forum" asp-action="DeleteTheme" asp-route-id="@t.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>

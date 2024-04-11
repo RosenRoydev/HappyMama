@@ -12,30 +12,30 @@ namespace HappyMama.Controllers
 	public class ForumController : Controller
 	{
 		private readonly IForumService forumService;
-        public ForumController(IForumService _forumService)
-        {
-            forumService = _forumService;
-        }
-
-		[HttpGet]
-        public async Task <IActionResult> AllThemes(string searchTerm  , ThemeEnum sorting, int currentPage = 1)
+		public ForumController(IForumService _forumService)
 		{
-			var model = await forumService.AllThemesAsync(searchTerm,sorting
-				,currentPage,ThemeFormViewModel.ThemesPerPage);
-
-				return View(model);
+			forumService = _forumService;
 		}
 
 		[HttpGet]
-		public  IActionResult AddTheme()
+		public async Task<IActionResult> AllThemes(string searchTerm, ThemeEnum sorting, int currentPage = 1)
 		{
-			var model =  new AddThemeFormModel();
+			var model = await forumService.AllThemesAsync(searchTerm, sorting
+				, currentPage, ThemeFormViewModel.ThemesPerPage);
 
-			return View (model);
+			return View(model);
+		}
+
+		[HttpGet]
+		public IActionResult AddTheme()
+		{
+			var model = new AddThemeFormModel();
+
+			return View(model);
 		}
 
 		[HttpPost]
-		public async Task <IActionResult> AddTheme(AddThemeFormModel model)
+		public async Task<IActionResult> AddTheme(AddThemeFormModel model)
 		{
 			if (model == null)
 			{
@@ -62,11 +62,12 @@ namespace HappyMama.Controllers
 				return BadRequest();
 
 			}
-			
+
 			return View(model);
 		}
 
 		[HttpPost]
+		
 		public async Task<IActionResult> EditTheme(AddThemeFormModel model, int id)
 		{
 			if (model == null)
@@ -74,9 +75,9 @@ namespace HappyMama.Controllers
 				return BadRequest();
 			}
 
-			
 
-			if (model.CreatorId != User.Id())
+
+			if (model.CreatorId != User.Id() && User.IsAdmin() == false)
 			{
 				return Unauthorized();
 			}
@@ -96,7 +97,7 @@ namespace HappyMama.Controllers
 		{
 			var model = await forumService.GetThemeById(id);
 			
-			if (model.CreatorId  != User.Id())
+			if (model.CreatorId  != User.Id() && User.IsAdmin() == false)
 			{
 				return Unauthorized();
 			}
@@ -117,7 +118,7 @@ namespace HappyMama.Controllers
 				return BadRequest();
 			}
 
-			if(model.CreatorId != User.Id())
+			if(model.CreatorId != User.Id() && User.IsAdmin() == false)
 			{
 				return Unauthorized();
 			}
@@ -175,7 +176,7 @@ namespace HappyMama.Controllers
 				return BadRequest();
 			}
 
-			if(model.CreatorId != User.Id())
+			if(model.CreatorId != User.Id() && User.IsAdmin() == false)
 			{
 				return Unauthorized();
 			}
@@ -191,7 +192,7 @@ namespace HappyMama.Controllers
                 return BadRequest();
             }
 
-            if (model.CreatorId != User.Id())
+            if (model.CreatorId != User.Id() && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -219,7 +220,7 @@ namespace HappyMama.Controllers
 				return BadRequest();
 			}
 
-			if(model.CreatorId != User.Id())
+			if(model.CreatorId != User.Id() && User.IsAdmin() == false)
 			{
 				return Unauthorized();
 			}
@@ -237,7 +238,7 @@ namespace HappyMama.Controllers
 
 			}
 
-			if (model.CreatorId != User.Id())
+			if (model.CreatorId != User.Id() && User.IsAdmin() == false)
 			{
 				return Unauthorized();
 			}
