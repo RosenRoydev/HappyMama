@@ -5,24 +5,23 @@
 <div class="mt-4 p-5 bg-light text-center">
     <h2 class="display-4">Hello, Admin!</h2>
     <p class="lead mb-1 mt-3">
-        This is your administrator area - you can <b>read</b>, <b>create</b>,
-        <b>delete</b> and <b>edit</b> houses.
-        <br />You can <b>rent</b> and <b>leave</b> the free ones, too!
+        This is your administrator area - you can <b>create</b>,  and <b>edit</b> events.
+        <br />You can <b>approve</b> teachers and parents who wants to be part from the community!
     </p>
     <p class="lead mt-1">
-        You can also see <b>all users and agents</b> and <b>all rents</b> in the system.
+        You can also see <b>teachers</b> and <b>parents</b> in the system.
     </p>
     <hr class="my-4">
-    <a asp-area="" asp-controller="House" asp-action="All"
-       class="btn btn-primary btn-lg">All Houses</a>
-    <a asp-area="" asp-controller="House" asp-action="Add"
-       class="btn btn-primary btn-lg">Add House</a>
+    <a asp-area="" asp-controller="Event" asp-action="AllEventsSorted"
+       class="btn btn-primary btn-lg">All Events</a>
+    <a asp-area="" asp-controller="Event" asp-action="AddEvent"
+       class="btn btn-primary btn-lg">Add Event</a>
     <span>  |   </span>
-    <a asp-area="Admin" asp-controller="House" asp-action="Mine"
-       class="btn btn-primary btn-lg">My Houses</a>
+    <a asp-area="Admin" asp-controller="Home" asp-action="TeacherReview"
+       class="btn btn-primary btn-lg">Teachers for Review</a>
     <span>  |   </span>
-    <a asp-area="Admin" asp-controller="Rent" asp-action="All"
-       class="btn btn-primary btn-lg">All Rents</a>
-    <a asp-area="Admin" asp-controller="User" asp-action="All"
+    <a asp-area="Admin" asp-controller="Home" asp-action="ParentReview"
+       class="btn btn-primary btn-lg">Parents for review</a>
+    <a asp-area="Admin" asp-controller="Home" asp-action="AllUsers"
        class="btn btn-primary btn-lg">All Users</a>
 </div>

@@ -6,7 +6,7 @@ namespace HappyMama.Areas.Admin.Controllers
     {
         public IActionResult Index()
         {
-            return View("~/Areas/Admin/Views/AdminHome/Index.cshtml");
+            return View();
         }
     }
 }
