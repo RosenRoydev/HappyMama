@@ -43,6 +43,9 @@ namespace HappyMama.Infrastructure.Data.DataModels
         [Comment("All post of the teacher")]
         public ICollection<Post> Posts { get; set; } = new HashSet<Post>();
 
+        [Comment("The admin must approve the user")]
+        public bool IsApproved { get; set; }
+
 
     }
 }
