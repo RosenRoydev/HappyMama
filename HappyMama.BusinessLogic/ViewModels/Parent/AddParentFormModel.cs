@@ -23,5 +23,7 @@ namespace HappyMama.BusinessLogic.ViewModels.Parent
             AmountMaxValue,
             ErrorMessage = NeededAmountRestrict)]
         public decimal Amount { get; set; }
+
+        public bool IsApproved { get; set; }
     }
 }

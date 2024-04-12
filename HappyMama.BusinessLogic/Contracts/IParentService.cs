@@ -14,5 +14,6 @@ namespace HappyMama.BusinessLogic.Contracts
 		Task AddParentAsync(string Id, AddParentFormModel model);
 		Task <Parent> ParentByIntIdAsync(int Id);
 		Task<List<EventIndexViewModel>> PaidEventsAsync (string Id);
+		Task <bool> IsApproved(string Id);
 	}
 }

@@ -2,7 +2,6 @@
 using HappyMama.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace HappyMama.Attributes
 {
@@ -22,7 +21,8 @@ namespace HappyMama.Attributes
                 context.Result = new StatusCodeResult(StatusCodes.Status401Unauthorized);
             }
 
-            if (service != null &&  service.ExistByIdAsync(context.HttpContext.User.Id()).Result == false)
+            if (service != null 
+                &&  service.ExistByIdAsync(context.HttpContext.User.Id()).Result == false)
             {
                 context.Result = new StatusCodeResult(StatusCodes.Status401Unauthorized);
             }

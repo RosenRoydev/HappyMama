@@ -25,6 +25,7 @@ namespace HappyMama.BusinessLogic.Services
 				FirstName = model.FirstName,
 				LastName = model.LastName,
 				Amount = model.Amount,
+				IsApproved = model.IsApproved,
 			};
 			
 
@@ -38,6 +39,7 @@ namespace HappyMama.BusinessLogic.Services
 		public Task<bool> ExistByIdAsync(string Id)
 		{
 			return context.Parents
+				.Where(p => p.IsApproved == true)
 				.AnyAsync(p => p.UserId == Id);
 		}
 
@@ -47,7 +49,13 @@ namespace HappyMama.BusinessLogic.Services
 				.AnyAsync(p => p.FirstName == FirstName);
 		}
 
-		public async Task<bool> LastNameExistsAsync(string LastName)
+        public async Task<bool> IsApproved(string Id)
+        {
+            return await context.Parents.
+                Where(p => p.UserId == Id).AnyAsync();
+        }
+
+        public async Task<bool> LastNameExistsAsync(string LastName)
 		{
 			return await context.Parents
 				.AnyAsync(p => p.LastName == LastName);
