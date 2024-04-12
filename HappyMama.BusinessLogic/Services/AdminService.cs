@@ -1,16 +1,14 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.ViewModels.Admin;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualBasic;
+using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
 namespace HappyMama.BusinessLogic.Services
 {
-	public class AdminService : IAdminService
+    public class AdminService : IAdminService
 	{
 		private readonly HappyMamaDbContext context;
 
@@ -32,7 +30,41 @@ namespace HappyMama.BusinessLogic.Services
 			await context.SaveChangesAsync();
 		}
 
-		public async Task<bool> ExistAdminById(string Id)
+        public async Task<IEnumerable<AllUsersViewModel>> AllParentsAsync()
+        {
+            var allUsers = await context.Parents
+
+                   .Select(p => new AllUsersViewModel()
+                   {
+                       FirstName = p.FirstName,
+                       LastName = p.LastName,
+					   CustomerAmount = p.Amount.ToString(),
+					   IsApproved = p.IsApproved,
+
+
+                   }).ToListAsync();
+
+            return allUsers;
+        }
+
+        public async Task<IEnumerable<AllUsersViewModel>> AllTeachersAsync()
+        {
+            var allUsers = await context.Teachers
+				      
+				    .Select(t => new AllUsersViewModel()
+					{
+						FirstName = t.FirstName,
+						LastName = t.LastName,
+						IsApproved = t.IsApproved,
+						
+
+					}).ToListAsync();
+
+			return allUsers;
+				             
+        }
+
+        public async Task<bool> ExistAdminById(string Id)
 		{
 			return await context.Admins.AnyAsync(a => a.UserId == Id);
 		}

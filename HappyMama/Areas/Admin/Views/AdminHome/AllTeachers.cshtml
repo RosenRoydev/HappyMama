@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AllUsersViewModel>
+
+@{
+    ViewBag.Title = "All Teachers";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><label>First Name</label></th>
+            <th><label>Last Name</label></th>
+            <th><label>Is Approved</label></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teacher in Model)
+        {
+            <tr>
+                <td><label>@teacher.FirstName</label></td>
+                <td><label>@teacher.LastName </label></td>
+               
+                <td>
+                    @if (teacher.IsApproved == true)
+                    {
+                        <label>✔</label>
+                    }
+                    else
+                    {
+                        <label class="text-center">❌</label>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
