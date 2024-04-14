@@ -1,4 +1,5 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.Services;
 using HappyMama.BusinessLogic.ViewModels.Teacher;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +9,13 @@ namespace HappyMama.Areas.Admin.Controllers
     {
         private readonly IAdminService adminService;
         private readonly ITeacherService teacherService;
+        private readonly IParentService parentService;
 
-        public AdminHomeController(IAdminService _adminService,ITeacherService _teacherService)
+        public AdminHomeController(IAdminService _adminService,ITeacherService _teacherService, IParentService _parentService)
         {
                 adminService = _adminService;
                 teacherService = _teacherService;
+                parentService = _parentService;
         }
         public IActionResult Index()
         {
@@ -47,6 +50,23 @@ namespace HappyMama.Areas.Admin.Controllers
             await teacherService.ApproveTeacherAsync(Id);
 
             return RedirectToAction(nameof(ApproveTeacher));
+        }
+
+        [HttpGet] 
+
+        public async Task<IActionResult> ApproveParent()
+        {
+            var model = await parentService.GetParentsNotApprovedAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ApproveParent(int Id)
+        {
+            await parentService.ApproveParentAsync(Id);
+
+            return RedirectToAction(nameof(ApproveParent));
         }
     }
 }

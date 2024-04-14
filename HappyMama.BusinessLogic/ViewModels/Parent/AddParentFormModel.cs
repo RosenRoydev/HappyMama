@@ -6,6 +6,9 @@ namespace HappyMama.BusinessLogic.ViewModels.Parent
 {
     public class AddParentFormModel
     {
+        public int Id { get; set; }
+
+
         [Required(ErrorMessage = RequiredField)]
         [StringLength(FirstNameMaxLength, 
             MinimumLength = FirstNameMinLength,

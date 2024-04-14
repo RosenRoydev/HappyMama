@@ -1,0 +1,24 @@
+﻿@using HappyMama.BusinessLogic.Contracts
+@model IEnumerable<AddParentFormModel>
+@inject IParentService parentService
+
+@{
+    ViewBag.Title = "Parents For Approve";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">Not new parents for approve!</h2>
+}
+
+<div class="row">
+    @foreach (var parent in Model)
+    {
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_ParentPartial.cshtml", parent)
+    }
+</div>

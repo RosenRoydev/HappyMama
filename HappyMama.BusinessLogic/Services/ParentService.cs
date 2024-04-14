@@ -36,7 +36,21 @@ namespace HappyMama.BusinessLogic.Services
 			
 		}
 
-		public Task<bool> ExistByIdAsync(string Id)
+        public async Task ApproveParentAsync(int Id)
+        {
+            var parent = await context.Parents
+				.Where(p =>  p.Id == Id)
+				.FirstOrDefaultAsync();
+
+			if (parent != null && parent.IsApproved == false)
+			{
+				parent.IsApproved = true;
+
+				await context.SaveChangesAsync();
+			}
+        }
+
+        public Task<bool> ExistByIdAsync(string Id)
 		{
 			return context.Parents
 				.Where(p => p.IsApproved == true)
@@ -48,6 +62,21 @@ namespace HappyMama.BusinessLogic.Services
 			return await context.Parents
 				.AnyAsync(p => p.FirstName == FirstName);
 		}
+
+        public async Task<IEnumerable<AddParentFormModel>> GetParentsNotApprovedAsync()
+        {
+            return await context.Parents
+				.Where(p => p.IsApproved == false)
+				.Select(p => new AddParentFormModel()
+				{
+					Id = p.Id,
+					FirstName = p.FirstName,
+					LastName = p.LastName,
+					Amount = p.Amount,
+				
+				})
+				.ToListAsync();
+        }
 
         public async Task<bool> IsApproved(string Id)
         {
