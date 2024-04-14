@@ -1,0 +1,23 @@
+﻿@using HappyMama.BusinessLogic.Contracts
+@model IEnumerable<AddTeacherForm>
+@inject ITeacherService teacherService
+
+@{
+    ViewBag.Title = "Teachers For Approve";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">Not new teachers for approve!</h2>
+}
+<div class="row">
+    @foreach (var teacher in Model)
+    {
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_TeacherPartial.cshtml", teacher)
+    }
+</div>

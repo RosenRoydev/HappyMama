@@ -6,6 +6,9 @@ namespace HappyMama.BusinessLogic.ViewModels.Teacher
 {
 	public class AddTeacherForm
     {
+        public int Id { get; set; }
+
+
         [Required(ErrorMessage = RequiredField )]
         [StringLength(FirstNameMaxLength,
             MinimumLength = FirstNameMinLength,

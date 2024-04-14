@@ -1,4 +1,5 @@
 ﻿using HappyMama.BusinessLogic.Contracts;
+using HappyMama.BusinessLogic.ViewModels.Teacher;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Identity;
@@ -28,6 +29,22 @@ namespace HappyMama.BusinessLogic.Services
             await context.SaveChangesAsync();
         }
 
+        public async Task ApproveTeacherAsync(int Id)
+        
+        {
+            var teacher = await context.Teachers
+                .Where(t => t.Id == Id)
+                .FirstOrDefaultAsync();
+
+            if (teacher != null && teacher.IsApproved == false)
+            {
+                teacher.IsApproved = true;
+
+               await context.SaveChangesAsync();
+            }
+            
+        }
+
         public async Task<bool> ExistById(string Id)
         {
             return await context.Teachers
@@ -45,6 +62,19 @@ namespace HappyMama.BusinessLogic.Services
         {
             return await context.Teachers
                 .AnyAsync(t => t.LastName == LastName);
+        }
+
+        public async Task<IEnumerable<AddTeacherForm>> GetTeachersNotApprovedAsync()
+        {
+            return await context.Teachers
+                .Where(t => t.IsApproved == false)
+                .Select( t => new AddTeacherForm()
+                {
+                    Id = t.Id,
+                    FirstName = t.FirstName,
+                    LastName = t.LastName,
+                })
+                .ToListAsync();
         }
 
         public async Task<bool> IsApproved(string Id)

@@ -1,0 +1,19 @@
+﻿@model AddTeacherForm
+@inject ITeacherService teacherService
+
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        
+        <div class="card-body text-center">
+            <h4>First Name: <b>@Model.FirstName</b></h4>
+            <h4>Last Name: <b>@Model.LastName</b></h4>
+            
+            <br />   
+            <form class="input-group-sm" asp-controller="AdminHome"
+                  asp-area="Admin" asp-action="ApproveTeacher" asp-route-Id="@Model.Id" method="post">
+                <input class="btn btn-warning" type="submit" value="Approve" />
+            </form>
+        </div>
+    </div>
+</div>
