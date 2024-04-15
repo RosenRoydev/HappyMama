@@ -17,7 +17,7 @@ namespace HappyMama.UnitTests.NewFolder
         public static Post Post;
         public static Theme Theme;
         public static Post AnotherPost;
-        public static Infrastructure.Data.DataModels.Event SomeEvent;
+        public static Event SomeEvent;
             
         public static void SeedDatabase(HappyMamaDbContext db)
         {
@@ -89,8 +89,8 @@ namespace HappyMama.UnitTests.NewFolder
             {
                
                 UserId = "228dfc0a-78a8-4163-aff3-94a5c1014fbb",
-                FirstName = "Ani",
-                LastName = "Ivanova",
+                FirstName = "Ioana",
+                LastName = "Strahilova",
                 Amount = 180
 
 
@@ -100,8 +100,8 @@ namespace HappyMama.UnitTests.NewFolder
             {
                 
                 UserId = "03d74db7-55ee-4ee0-ae1d-7c16a4578141",
-                FirstName = "Petia",
-                LastName = "Dubarova",
+                FirstName = "Neli",
+                LastName = "Petrova",
                 Amount = 180
             };
 
@@ -109,29 +109,29 @@ namespace HappyMama.UnitTests.NewFolder
             {
               
                 UserId = "579cfd9f-0dfd-4775-b05d-e2ca79d70b92",
-                Nickname = "petrova",
+                Nickname = "dimova",
             };
 
             Teacher = new Teacher()
             {
                 
                 UserId = "a05289cd-5411-45bb-b863-ba2394c21342",
-                FirstName = "Snezhana",
-                LastName = "Ilieva",
+                FirstName = "Vasil",
+                LastName = "Manov",
             };
 
             Theme = new Theme()
             {
                
                 CreatorId = Parent.UserId,
-                Title = "Problem with Toni",
+                Title = "I am very happy with teachers staff",
                 CreatedOn = new DateTime(2024, 04, 03, 13, 52, 21),
             };
 
             Post = new Post()
             {
                 
-                Content = "Hello i want to write Toni has problem with food . Do you have this problem ?",
+                Content = " The teachers are perfect . What do you think?",
                 CreatedOn = new DateTime(2024, 04, 03, 13, 52, 21),
                 CreatorId = Parent.UserId,
                 ThemeId = Theme.Id,
@@ -139,21 +139,21 @@ namespace HappyMama.UnitTests.NewFolder
 
             AnotherPost = new Post()
             {
-                Content = "I have the same problem",
+                Content = "I think so too",
                 CreatedOn = new DateTime(2024, 04, 03, 13, 52, 21),
                 CreatorId = ParentTwo.UserId,
                 ThemeId = Theme.Id,
             };
 
-            SomeEvent = new Infrastructure.Data.DataModels.Event()
+            SomeEvent = new Event()
             {
              
-                Name = "Christmas gifts for the teachers",
+                Name = "Easter gifts for the teachers",
                 CreatorId = AdminUser.UserId,
                 DeadTime = new DateTime(2024, 04, 03, 13, 52, 21),
                 Description = "This year the present of the teacher will be two boxes of flowers",
-                NeededAmount = 80,
-                AmountForPay = 5
+                NeededAmount = 100,
+                AmountForPay = 10
             };
 
             db.Users.Add(UserA);

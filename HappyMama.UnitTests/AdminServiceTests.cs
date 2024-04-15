@@ -51,10 +51,10 @@ namespace HappyMama.UnitTests
           
 
            var teachers= await this.adminService.AllTeachersAsync();
-            var expectedCount = 1;
+            var expectedCount = 3;
 
             Assert.IsNotNull(teachers);
-            Assert.AreEqual(1,expectedCount);
+            Assert.AreEqual(expectedCount,teachers.Count());
         }
 
         [Test]
@@ -63,10 +63,10 @@ namespace HappyMama.UnitTests
 
 
             var parents = await this.adminService.AllParentsAsync();
-            var expectedCount = 2;
+            var expectedCount = 4;
 
             Assert.IsNotNull(parents);
-            Assert.AreEqual(2, expectedCount);
+            Assert.AreEqual(expectedCount, parents.Count());
         }
 
 
