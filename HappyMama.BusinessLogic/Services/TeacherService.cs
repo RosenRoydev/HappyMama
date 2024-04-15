@@ -2,7 +2,6 @@
 using HappyMama.BusinessLogic.ViewModels.Teacher;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HappyMama.BusinessLogic.Services
