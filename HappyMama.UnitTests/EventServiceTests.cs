@@ -177,7 +177,7 @@ namespace HappyMama.UnitTests
                 await eventService.PayForEventAsync("228dfc0a-78a8-4163-aff3-94a5c1014fbb", eventForPay);
             });
 
-            Assert.That(exception.Message, Is.EqualTo("You  already paid for this event!")); // Optionally, verify the exception message
+            Assert.That(exception.Message, Is.EqualTo("You  already paid for this event!")); 
         }
     }
 
