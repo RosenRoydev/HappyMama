@@ -49,6 +49,7 @@ namespace HappyMama.Controllers
 
         [HttpGet]
         [NotForTeacherFilter]
+        [ParentFilter]
         
         public async Task<IActionResult> AllEventsSorted(string searchTerm, EventEnum sorting, int page = 1)
         {
