@@ -5,15 +5,12 @@ using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Nancy.Validation;
-using System.Diagnostics.CodeAnalysis;
-using System.Net.WebSockets;
 using System.Security.Claims;
 using static HappyMama.Infrastructure.Constants.DataValidationConstants;
 
 namespace HappyMama.BusinessLogic.Services
 {
-	public class ForumService : IForumService
+    public class ForumService : IForumService
 	{
 		private readonly HappyMamaDbContext context;
 		private readonly IHttpContextAccessor httpContextAccessor;
@@ -233,10 +230,11 @@ namespace HappyMama.BusinessLogic.Services
 
         public async Task<AddPostFormModel?> GetPostById(int Id)
         {
-            var model = await context.Posts
+            AddPostFormModel? model = await context.Posts
 				.Where (p => p.Id == Id)
 				.Select(p => new AddPostFormModel()
 				{
+					
 					Content = p.Content,
 					CreatedOn = p.CreatedOn,
 					CreatorId	= p.CreatorId,

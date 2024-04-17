@@ -216,6 +216,8 @@ namespace HappyMama.BusinessLogic.Services
                 parentWhoPay.Amount -= eventForPay.AmountForPay;
             }
 
+           
+
             if (eventForPay != null && eventForPay.NeededAmount > 0)
             {
                 eventForPay.Id = model.Id;
