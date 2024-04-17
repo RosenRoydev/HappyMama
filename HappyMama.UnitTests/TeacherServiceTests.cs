@@ -23,7 +23,7 @@ namespace HappyMama.UnitTests
                 .Options;
 
             this.dbContext = new HappyMamaDbContext(this.dbOptions);
-            this.dbContext.Database.EnsureDeleted();
+           
             this.dbContext.Database.EnsureCreated();
              SeedDatabase(this.dbContext);
 
