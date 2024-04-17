@@ -6,12 +6,11 @@ using HappyMama.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using System.Security.Principal;
 
 namespace HappyMama.BusinessLogic.Services
 {
 
-	public class NewsService : INewsService
+    public class NewsService : INewsService
 	{
 		private readonly HappyMamaDbContext context;
 		private readonly IHttpContextAccessor accessor;

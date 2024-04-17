@@ -68,7 +68,7 @@ namespace HappyMama.BusinessLogic.Services
                 .Take(eventsPerPage)
                 .Select(e => new EventIndexViewModel
                 {
-                    Id = e.Id,
+                    EventId = e.Id,
                     Name = e.Name,
                     Description = e.Description,
                     DeadLineTime = e.DeadTime.ToString(FormatForDate),
@@ -120,7 +120,7 @@ namespace HappyMama.BusinessLogic.Services
                  .Take(eventsPerPage)
                  .Select(e => new EventIndexViewModel
                  {
-                     Id = e.Id,
+                     EventId = e.Id,
                      Name = e.Name,
                      Description = e.Description,
                      DeadLineTime = e.DeadTime.ToString(FormatForDate),
@@ -195,6 +195,7 @@ namespace HappyMama.BusinessLogic.Services
             return model;
 		}
 
+        
         public async Task PayForEventAsync(string userId , EventPayModel model)
         {
             var eventForPay = await context.Events

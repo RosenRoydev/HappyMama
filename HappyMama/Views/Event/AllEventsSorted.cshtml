@@ -42,13 +42,13 @@
                 <p class="mb-0"><span class="fw-bold">Creator of Event: </span>@e.Creator</p>
                 @if (User.Identity.Name == e.Creator)
                 {
-                    <a asp-controller="Event" asp-action="EditEvent" type="submit" asp-route-id="@e.Id" asp-route-information="@e.GetInformation()"
+                    <a asp-controller="Event" asp-action="EditEvent" type="submit" asp-route-id="@e.EventId" asp-route-information="@e.GetInformation()"
                     class="btn btn-info mb-2 w-100 p-3 fw-bold">Edit</a>
                    
                 }
                 else
                 {
-                    <a asp-controller="Event" asp-action="PayEvent" type="submit" asp-route-id="@e.Id"  asp-route-information ="@e.GetInformation()"
+                    <a asp-controller="Event" asp-action="PayEvent" type="submit" asp-route-id="@e.EventId"  asp-route-information ="@e.GetInformation()"
                     class="btn btn-warning mb-2 w-100 p-3 fw-bold">Pay for event</a>
                 }
             </div>

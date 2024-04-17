@@ -3,17 +3,19 @@ using HappyMama.BusinessLogic.ViewModels.Event;
 using HappyMama.BusinessLogic.ViewModels.Parent;
 using HappyMama.Infrastructure.Data;
 using HappyMama.Infrastructure.Data.DataModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using static HappyMama.BusinessLogic.Constants.ErrorMessagesConstants;
 
 namespace HappyMama.BusinessLogic.Services
 {
     public class ParentService : IParentService
 	{
 		private readonly HappyMamaDbContext context;
-		public ParentService(HappyMamaDbContext _context)
+       
+        public ParentService(HappyMamaDbContext _context)
 		{
 			context = _context;
+			
 		}
 
 		public async Task AddParentAsync(string Id, AddParentFormModel model)
@@ -96,11 +98,11 @@ namespace HappyMama.BusinessLogic.Services
 				.Where(p => p.UserId == Id).FirstOrDefaultAsync();
 
 
-			var model = await context.EventsParents
+			List<EventIndexViewModel>? model = await context.EventsParents
 				.Where(ep => ep.ParentId == parent.Id)
 				.Select(ep => new EventIndexViewModel
 				{
-					Id = ep.EventId,
+					EventId = ep.EventId,
 					Name = ep.Event.Name,
 					Description = ep.Event.Description,
 					DeadLineTime = ep.Event.DeadTime.ToString(),

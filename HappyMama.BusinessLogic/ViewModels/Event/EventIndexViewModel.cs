@@ -7,7 +7,7 @@ namespace HappyMama.BusinessLogic.ViewModels.Event
     {
 
         public const int EventsPerPage = 3;
-        public int Id { get; set; }
+        public int EventId { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string NeededAmount { get; set; } = string.Empty;

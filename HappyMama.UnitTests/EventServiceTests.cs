@@ -82,7 +82,26 @@ namespace HappyMama.UnitTests
         }
 
         [Test]
-        public async Task CorrectEditorShouldreturnTrueOrFalseIfCreatorExistorNot()
+        public async Task AllEventsAsyncSortedShouldReturnsCorrectEventsAndPagination()
+        {
+
+            const int currentPage = 1;
+            const int eventsPerPage = 2;
+            var expectedTotalCount = await this.context.Events.CountAsync();
+            var expectedTotalPages = (int)Math.Ceiling((double)expectedTotalCount / eventsPerPage);
+
+            var result = await this.eventService.AllEventsAsync(currentPage, eventsPerPage);
+
+            Assert.NotNull(result);
+            Assert.AreEqual(expectedTotalCount, result.EventsCount);
+            Assert.AreEqual(currentPage, result.CurrentPage);
+            Assert.AreEqual(expectedTotalPages, result.TotalPages);
+
+
+        }
+
+        [Test]
+        public async Task CorrectEditorShouldReturnTrueOrFalseIfCreatorExistOrNot()
         {
 
             var trueResult = await eventService.CorrectEditor("579cfd9f-0dfd-4775-b05d-e2ca79d70b92");

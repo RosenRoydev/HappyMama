@@ -124,7 +124,7 @@ namespace HappyMama.Controllers
 
             await eventService.EditEventAsync(model.Id, model);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(AllEventsSorted));
         }
 
         [HttpGet]
@@ -162,7 +162,7 @@ namespace HappyMama.Controllers
         [HttpPost]
         [ParentFilter]
 
-        public async Task <IActionResult> PayEvent(int Id,EventPayModel model,string info)
+        public async Task <IActionResult> PayEvent(int Id,EventPayModel model,string information)
         {
           
             
